@@ -4,522 +4,100 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Biodata</title>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Archivo:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 <style>
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  @page { size: A4; margin: 0; }
+/* tokens */
+:root{--bg:#F9F3F3;--red:#F03D2F;--r50:rgba(240,61,47,.52);--r28:rgba(240,61,47,.28);--r20:rgba(240,61,47,.20);--r09:rgba(240,61,47,.09)}
 
-  :root {
-    --bg:      #F9F3F3;
-    --red:     #F03D2F;
-    --red-mid: rgba(240,61,47,0.52);
-    --red-dim: rgba(240,61,47,0.28);
-    --red-fnt: rgba(240,61,47,0.20);
-    --red-gls: rgba(240,61,47,0.09);
-  }
+/* reset */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+@page{size:A4;margin:0}
 
-  body {
-    width: 210mm;
-    min-height: 297mm;
-    margin: 0 auto;
-    background: var(--bg);
-    color: var(--red);
-    font-family: 'Archivo', sans-serif;
-    -webkit-font-smoothing: antialiased;
-  }
+/* base — set font-family once here, all children inherit */
+body{font-family:'Archivo',sans-serif;background:var(--bg);color:var(--red);width:210mm;min-height:297mm;margin:0 auto;-webkit-font-smoothing:antialiased}
 
-  /* ── PAGE ── */
-  .page {
-    width: 210mm;
-    min-height: 297mm;
-    background: var(--bg);
-    padding: 28px 32px;
-    position: relative;
-  }
+/* page */
+.page{width:210mm;min-height:297mm;background:var(--bg);padding:28px 32px;position:relative}
+.page::before,.page::after{content:'';position:absolute;pointer-events:none;z-index:1}
+.page::before{inset:10px;border:1.5px solid var(--r28)}
+.page::after{inset:15px;border:.5px solid var(--r09)}
 
-  /* double border frame */
-  .page::before {
-    content: '';
-    position: absolute;
-    inset: 10px;
-    border: 1.5px solid var(--red-dim);
-    pointer-events: none;
-    z-index: 1;
-  }
-  .page::after {
-    content: '';
-    position: absolute;
-    inset: 15px;
-    border: 0.5px solid var(--red-gls);
-    pointer-events: none;
-    z-index: 1;
-  }
+/* header */
+.header{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;padding-bottom:16px;border-bottom:2px solid var(--red);margin-bottom:20px}
+.header-left{flex:1}
+.eyebrow{font-weight:500;font-size:7.5px;letter-spacing:5px;text-transform:uppercase;color:var(--r50);margin-bottom:10px}
+.name{font-family:'Archivo Black',sans-serif;font-size:52px;line-height:.92;letter-spacing:-1.5px;margin-bottom:14px}
+.tagline{font-style:italic;font-size:10px;color:var(--r50);line-height:1.6}
 
-  /* ── HEADER ── */
-  .header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 20px;
-    padding-bottom: 16px;
-    border-bottom: 2px solid var(--red);
-    margin-bottom: 20px;
-  }
+/* photo */
+.photo{width:110px;height:135px;border:1px solid var(--r28);flex-shrink:0;position:relative;background:var(--bg);overflow:hidden}
+.photo::before{content:'';position:absolute;inset:4px;border:.5px dashed var(--r09)}
+.photo img{width:100%;height:100%;object-fit:cover;display:block}
 
-  .header-left { flex: 1; }
+/* facts */
+.facts-bar{display:flex;border-top:1px solid var(--r28);border-bottom:1px solid var(--r28);margin-bottom:22px}
+.fact{flex:1;padding:7px 0;text-align:center;position:relative}
+.fact+.fact::before{content:'';position:absolute;left:0;top:20%;bottom:20%;width:.5px;background:var(--r28)}
+.fact-lbl{font-weight:600;font-size:8px;letter-spacing:2px;text-transform:uppercase;color:var(--r50);margin-bottom:2px}
+.fact-val{font-family:'Archivo Black',sans-serif;font-size:14px;line-height:1.1}
 
-  .eyebrow {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 500;
-    font-size: 7.5px;
-    letter-spacing: 5px;
-    text-transform: uppercase;
-    color: var(--red-mid);
-    margin-bottom: 10px;
-  }
+/* sections */
+.section{margin-bottom:18px}
+.section-title{font-family:'Archivo Black',sans-serif;font-size:11px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1.5px;background:var(--red);opacity:.25}
 
-  .name {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 52px;
-    line-height: 0.92;
-    letter-spacing: -1.5px;
-    color: var(--red);
-    margin-bottom: 14px;
-  }
+/* rows */
+.row{display:grid;grid-template-columns:160px 1fr;align-items:baseline;padding:6px 0;border-bottom:.5px solid var(--r09)}
+.row:last-child{border-bottom:none}
+.row-lbl{font-weight:600;font-size:14px;letter-spacing:.5px;color:var(--r50);padding-right:12px}
+.row-lbl::after{content:':';margin-left:2px;opacity:.5}
+.row-val{font-size:18px;line-height:1.4}
+.row-val a{color:var(--red);text-decoration:none}
 
-  .tagline {
-    font-family: 'Archivo', sans-serif;
-    font-style: italic;
-    font-size: 10px;
-    color: var(--red-mid);
-    line-height: 1.6;
-  }
+/* footer */
+.footer{border-top:2px solid var(--red);padding-top:14px;margin-top:8px;display:grid;grid-template-columns:1fr 1fr}
+.footer-item{padding-right:16px}
+.footer-item+.footer-item{border-left:.5px solid var(--r28);padding-left:16px;padding-right:0}
+.footer-lbl{font-weight:600;font-size:6.5px;letter-spacing:2px;text-transform:uppercase;color:var(--r50);margin-bottom:3px}
+.footer-val{font-size:11px;line-height:1.4}
 
-  /* Photo */
-  .photo {
-    width: 110px;
-    height: 135px;
-    border: 1px solid var(--red-dim);
-    flex-shrink: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 6px;
-    position: relative;
-    background: var(--bg);
-  }
-  .photo::before {
-    content: '';
-    position: absolute;
-    inset: 4px;
-    border: 0.5px dashed var(--red-gls);
-  }
-  .photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
-  .photo-ph  { display: flex; flex-direction: column; align-items: center; gap: 6px; }
-  .photo-ph svg { opacity: 0.18; }
-  .photo-ph span {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 500;
-    font-size: 7px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--red-mid);
-  }
+/* colophon */
+.colophon{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.colophon span{font-size:7px;font-weight:500;letter-spacing:2.5px;text-transform:uppercase;color:var(--r20)}
+.colophon em{font-style:italic;font-size:8.5px;color:var(--r20)}
 
-  /* ── QUICK FACTS BAR ── */
-  .facts-bar {
-    display: flex;
-    border-top: 1px solid var(--red-dim);
-    border-bottom: 1px solid var(--red-dim);
-    margin-bottom: 22px;
-  }
+/* mobile ≤600px */
+@media screen and (max-width:600px){
+  body,.page{width:100%;min-height:100vh}
+  .page{padding:20px 16px}
+  .page::before,.page::after{display:none}
+  .header{flex-direction:column-reverse;align-items:center;text-align:center;gap:14px}
+  .header-left{width:100%}
+  .name{font-size:38px}
+  .photo{margin:0 auto}
+  .facts-bar{flex-wrap:wrap}
+  .fact{flex:0 0 50%;border-bottom:.5px solid var(--r28)}
+  .fact+.fact::before{display:none}
+  .fact:nth-child(odd){border-right:.5px solid var(--r28)}
+  .row{grid-template-columns:1fr;padding:7px 0}
+  .row-lbl{font-size:10px;padding-right:0}
+  .row-val{font-size:14px}
+  .footer{grid-template-columns:1fr;gap:12px}
+  .footer-item,.footer-item+.footer-item{padding:0;border:none}
+  .footer-item+.footer-item{border-top:.5px solid var(--r28);padding-top:12px}
+  .colophon{flex-direction:column;gap:4px;text-align:center}
+}
 
-  .fact {
-    flex: 1;
-    padding: 7px 0;
-    text-align: center;
-    position: relative;
-  }
-  .fact + .fact::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 20%; bottom: 20%;
-    width: 0.5px;
-    background: var(--red-dim);
-  }
-  .fact-lbl {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 600;
-    font-size: 8px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--red-mid);
-    margin-bottom: 2px;
-  }
-  .fact-val {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 14px;
-    color: var(--red);
-    line-height: 1.1;
-  }
-
-  /* ── SECTION ── */
-  .section {
-    margin-bottom: 18px;
-  }
-
-  .section-title {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 11px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--red);
-    margin-bottom: 10px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-title::after {
-    content: '';
-    flex: 1;
-    height: 1.5px;
-    background: var(--red);
-    opacity: 0.25;
-  }
-
-  /* Two-column label:value table */
-  .rows {
-    display: flex;
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .row {
-    display: grid;
-    grid-template-columns: 160px 1fr;
-    align-items: baseline;
-    padding: 6px 0;
-    border-bottom: 0.5px solid var(--red-gls);
-  }
-  .row:last-child { border-bottom: none; }
-
-  .row-lbl {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 600;
-    font-size: 14px;
-    letter-spacing: 0.5px;
-    color: var(--red-mid);
-    padding-right: 12px;
-  }
-
-  .row-val {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 400;
-    font-size: 18px;
-    color: var(--red);
-    line-height: 1.4;
-  }
-
-  /* colon separator */
-  .row-lbl::after {
-    content: ':';
-    margin-left: 2px;
-    opacity: 0.5;
-  }
-
-  /* ── FOOTER ── */
-  .footer {
-    border-top: 2px solid var(--red);
-    padding-top: 14px;
-    margin-top: 8px;
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 0;
-  }
-
-  .footer-item {
-    padding: 0 16px 0 0;
-  }
-  .footer-item + .footer-item {
-    border-left: 0.5px solid var(--red-dim);
-    padding-left: 16px;
-    padding-right: 16px;
-  }
-
-  .footer-lbl {
-    font-family: 'Archivo', sans-serif;
-    font-weight: 600;
-    font-size: 6.5px;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    color: var(--red-mid);
-    margin-bottom: 3px;
-  }
-  .footer-val {
-    font-family: 'Archivo', sans-serif;
-    font-size: 11px;
-    color: var(--red);
-    line-height: 1.4;
-  }
-
-  /* ── BLESSING ── */
-  .blessing {
-    margin-top: 14px;
-    text-align: center;
-    border-top: 0.5px solid var(--red-gls);
-    padding-top: 10px;
-  }
-  .blessing-om {
-    font-family: 'Archivo Black', sans-serif;
-    font-size: 20px;
-    color: var(--red);
-    opacity: 0.35;
-    display: block;
-    margin-bottom: 3px;
-  }
-  .blessing-text {
-    font-family: 'Archivo', sans-serif;
-    font-style: italic;
-    font-size: 8.5px;
-    color: var(--red-fnt);
-    letter-spacing: 0.3px;
-  }
-
-  /* ── COLOPHON ── */
-  .colophon {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 10px;
-  }
-  .colophon span {
-    font-family: 'Archivo', sans-serif;
-    font-size: 7px;
-    font-weight: 500;
-    letter-spacing: 2.5px;
-    text-transform: uppercase;
-    color: var(--red-fnt);
-  }
-  .colophon em {
-    font-family: 'Archivo', sans-serif;
-    font-style: italic;
-    font-size: 8.5px;
-    color: var(--red-fnt);
-  }
-
-  /* ═══════════════════════════════════════════════════
-     MOBILE RESPONSIVE — adapts for phones & small screens
-     Breakpoints:
-       ≤ 600px  — small phones (most Android/iPhone)
-       ≤ 420px  — compact phones (iPhone SE, small Android)
-  ═══════════════════════════════════════════════════ */
-
-  @media screen and (max-width: 600px) {
-
-    /* Reset the fixed A4 width — let it breathe on mobile */
-    body {
-      width: 100%;
-      min-height: 100vh;
-      padding: 0;
-    }
-
-    .page {
-      width: 100%;
-      min-height: 100vh;
-      padding: 20px 16px;
-      /* Remove the decorative pseudo-element borders on mobile
-         — they rely on fixed inset values that look odd on small screens */
-    }
-
-    /* Hide the decorative double-border frame on mobile */
-    .page::before,
-    .page::after {
-      display: none;
-    }
-
-    /* ── HEADER: stack photo below name on mobile ── */
-    .header {
-      flex-direction: column-reverse;   /* photo on top, name below */
-      align-items: center;
-      text-align: center;
-      gap: 14px;
-      padding-bottom: 14px;
-      margin-bottom: 16px;
-    }
-
-    .header-left {
-      width: 100%;
-    }
-
-    /* Scale down the large display name */
-    .name {
-      font-size: 38px;
-      letter-spacing: -1px;
-      margin-bottom: 10px;
-    }
-
-    .eyebrow {
-      font-size: 8px;
-      letter-spacing: 4px;
-    }
-
-    .tagline {
-      font-size: 10px;
-    }
-
-    /* Photo: centre it and give it a reasonable size */
-    .photo {
-      width: 100px;
-      height: 122px;
-      flex-shrink: 0;
-      margin: 0 auto;
-    }
-
-    /* ── QUICK FACTS: wrap to 2 columns on mobile ── */
-    .facts-bar {
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .fact {
-      flex: 0 0 50%;    /* 2 per row */
-      padding: 7px 0;
-      border-bottom: 0.5px solid var(--red-dim);
-    }
-
-    /* Reset the left-border separator — use bottom borders instead */
-    .fact + .fact::before {
-      display: none;
-    }
-
-    /* Add a right border on odd items to create grid lines */
-    .fact:nth-child(odd) {
-      border-right: 0.5px solid var(--red-dim);
-    }
-
-    .fact-lbl {
-      font-size: 7px;
-      letter-spacing: 1.5px;
-    }
-
-    .fact-val {
-      font-size: 13px;
-    }
-
-    /* ── SECTION HEADINGS ── */
-    .section {
-      margin-bottom: 16px;
-    }
-
-    .section-title {
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      margin-bottom: 8px;
-    }
-
-    /* ── DATA ROWS: stack label above value ── */
-    .row {
-      /* Switch from side-by-side grid to stacked layout */
-      grid-template-columns: 1fr;
-      padding: 7px 0;
-      gap: 1px;
-    }
-
-    .row-lbl {
-      font-size: 10px;
-      letter-spacing: 0.3px;
-      padding-right: 0;
-      color: var(--red-mid);
-    }
-
-    .row-val {
-      font-size: 14px;
-      line-height: 1.35;
-    }
-
-    /* ── FOOTER: stack contact items vertically ── */
-    .footer {
-      grid-template-columns: 1fr;
-      gap: 12px;
-      padding-top: 12px;
-    }
-
-    .footer-item {
-      padding: 0;
-    }
-
-    .footer-item + .footer-item {
-      border-left: none;
-      border-top: 0.5px solid var(--red-dim);
-      padding-left: 0;
-      padding-top: 12px;
-    }
-
-    .footer-lbl {
-      font-size: 7px;
-      letter-spacing: 2px;
-      margin-bottom: 3px;
-    }
-
-    .footer-val {
-      font-size: 12px;
-    }
-
-    /* ── BLESSING & COLOPHON ── */
-    .blessing {
-      margin-top: 16px;
-    }
-
-    .blessing-om {
-      font-size: 22px;
-    }
-
-    .blessing-text {
-      font-size: 9px;
-    }
-
-    .colophon {
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      text-align: center;
-    }
-  }
-
-  /* ── Extra-small phones (iPhone SE etc.) ── */
-  @media screen and (max-width: 420px) {
-
-    .page {
-      padding: 16px 12px;
-    }
-
-    .name {
-      font-size: 32px;
-    }
-
-    /* Facts: keep 2 columns but slightly smaller */
-    .fact-val {
-      font-size: 12px;
-    }
-
-    .row-lbl {
-      font-size: 9.5px;
-    }
-
-    .row-val {
-      font-size: 13px;
-    }
-
-    .photo {
-      width: 90px;
-      height: 110px;
-    }
-  }
-
+/* mobile ≤420px */
+@media screen and (max-width:420px){
+  .page{padding:16px 12px}
+  .name{font-size:32px}
+  .photo{width:90px;height:110px}
+  .row-lbl{font-size:9.5px}
+  .row-val,.fact-val{font-size:13px}
+}
 </style>
 </head>
-<body>
 <div class="page">
 
   <!-- ── HEADER ── -->
@@ -588,3 +166,4 @@
       <div class="footer-val">Brookefield, Bengaluru – 560034</div>
     </div>
   </div>
+</html>
