@@ -307,6 +307,216 @@
     font-size: 8.5px;
     color: var(--red-fnt);
   }
+
+  /* ═══════════════════════════════════════════════════
+     MOBILE RESPONSIVE — adapts for phones & small screens
+     Breakpoints:
+       ≤ 600px  — small phones (most Android/iPhone)
+       ≤ 420px  — compact phones (iPhone SE, small Android)
+  ═══════════════════════════════════════════════════ */
+
+  @media screen and (max-width: 600px) {
+
+    /* Reset the fixed A4 width — let it breathe on mobile */
+    body {
+      width: 100%;
+      min-height: 100vh;
+      padding: 0;
+    }
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      padding: 20px 16px;
+      /* Remove the decorative pseudo-element borders on mobile
+         — they rely on fixed inset values that look odd on small screens */
+    }
+
+    /* Hide the decorative double-border frame on mobile */
+    .page::before,
+    .page::after {
+      display: none;
+    }
+
+    /* ── HEADER: stack photo below name on mobile ── */
+    .header {
+      flex-direction: column-reverse;   /* photo on top, name below */
+      align-items: center;
+      text-align: center;
+      gap: 14px;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .header-left {
+      width: 100%;
+    }
+
+    /* Scale down the large display name */
+    .name {
+      font-size: 38px;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+    }
+
+    .eyebrow {
+      font-size: 8px;
+      letter-spacing: 4px;
+    }
+
+    .tagline {
+      font-size: 10px;
+    }
+
+    /* Photo: centre it and give it a reasonable size */
+    .photo {
+      width: 100px;
+      height: 122px;
+      flex-shrink: 0;
+      margin: 0 auto;
+    }
+
+    /* ── QUICK FACTS: wrap to 2 columns on mobile ── */
+    .facts-bar {
+      flex-wrap: wrap;
+      margin-bottom: 16px;
+    }
+
+    .fact {
+      flex: 0 0 50%;    /* 2 per row */
+      padding: 7px 0;
+      border-bottom: 0.5px solid var(--red-dim);
+    }
+
+    /* Reset the left-border separator — use bottom borders instead */
+    .fact + .fact::before {
+      display: none;
+    }
+
+    /* Add a right border on odd items to create grid lines */
+    .fact:nth-child(odd) {
+      border-right: 0.5px solid var(--red-dim);
+    }
+
+    .fact-lbl {
+      font-size: 7px;
+      letter-spacing: 1.5px;
+    }
+
+    .fact-val {
+      font-size: 13px;
+    }
+
+    /* ── SECTION HEADINGS ── */
+    .section {
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      margin-bottom: 8px;
+    }
+
+    /* ── DATA ROWS: stack label above value ── */
+    .row {
+      /* Switch from side-by-side grid to stacked layout */
+      grid-template-columns: 1fr;
+      padding: 7px 0;
+      gap: 1px;
+    }
+
+    .row-lbl {
+      font-size: 10px;
+      letter-spacing: 0.3px;
+      padding-right: 0;
+      color: var(--red-mid);
+    }
+
+    .row-val {
+      font-size: 14px;
+      line-height: 1.35;
+    }
+
+    /* ── FOOTER: stack contact items vertically ── */
+    .footer {
+      grid-template-columns: 1fr;
+      gap: 12px;
+      padding-top: 12px;
+    }
+
+    .footer-item {
+      padding: 0;
+    }
+
+    .footer-item + .footer-item {
+      border-left: none;
+      border-top: 0.5px solid var(--red-dim);
+      padding-left: 0;
+      padding-top: 12px;
+    }
+
+    .footer-lbl {
+      font-size: 7px;
+      letter-spacing: 2px;
+      margin-bottom: 3px;
+    }
+
+    .footer-val {
+      font-size: 12px;
+    }
+
+    /* ── BLESSING & COLOPHON ── */
+    .blessing {
+      margin-top: 16px;
+    }
+
+    .blessing-om {
+      font-size: 22px;
+    }
+
+    .blessing-text {
+      font-size: 9px;
+    }
+
+    .colophon {
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      text-align: center;
+    }
+  }
+
+  /* ── Extra-small phones (iPhone SE etc.) ── */
+  @media screen and (max-width: 420px) {
+
+    .page {
+      padding: 16px 12px;
+    }
+
+    .name {
+      font-size: 32px;
+    }
+
+    /* Facts: keep 2 columns but slightly smaller */
+    .fact-val {
+      font-size: 12px;
+    }
+
+    .row-lbl {
+      font-size: 9.5px;
+    }
+
+    .row-val {
+      font-size: 13px;
+    }
+
+    .photo {
+      width: 90px;
+      height: 110px;
+    }
+  }
+
 </style>
 </head>
 <body>
