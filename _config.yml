@@ -7,3 +7,4 @@ plugins:
 - jekyll-include-cache
 - jekyll-optional-font-matter
 theme: null
+permalink: /:title/

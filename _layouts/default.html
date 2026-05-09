@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles.css">
+    <title>{% if page.title %}{{ page.title }} — {% endif %}Aditya Sarangi</title>
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://adityasarangi.com{{ page.url }}">
+    <meta property="og:title" content="{% if page.title %}{{ page.title }} — {% endif %}Aditya Sarangi">
+    <meta property="og:image" content="https://adityasarangi.com/aditya-headshot.jpeg">
+
+    <meta property="twitter:card" content="summary">
+    <meta property="twitter:url" content="https://adityasarangi.com{{ page.url }}">
+    <meta property="twitter:title" content="{% if page.title %}{{ page.title }} — {% endif %}Aditya Sarangi">
+    <meta property="twitter:image" content="https://adityasarangi.com/aditya-headshot.jpeg">
+
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-N1YFKE5YHG"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-N1YFKE5YHG');
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="top-nav">
+                <a href="/" class="nav-name">Aditya Sarangi</a>
+                <nav class="nav-links">
+                    <a href="/rabbit-holes.html">Rabbit Holes</a>
+                    <a href="/music.html">Music</a>
+                    <a href="/collections.html">Collections</a>
+                </nav>
+            </div>
+            {{ content }}
+        </div>
+    </div>
+</body>
+</html>
