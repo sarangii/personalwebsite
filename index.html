@@ -1,17 +1,50 @@
 ---
 layout: default
-description: Aditya Sarangi works in the Founder's office of a fintech startup. Previously in the development sector at the intersection of social welfare and policy.
+description: Aditya Sarangi works in the Founder's office of a fintech startup. Writing about ideas, music, and the things that pull his attention.
 ---
-<img src="/aditya-headshot.jpeg" alt="Aditya Sarangi" class="profile-photo">
-<p>I am Aditya and I work in the Founder's office of a fintech startup. That means I work on multiple moving projects.</p>
-<p>Previously I was in the development sector working at the intersection of social welfare and policy.</p>
-<p>In span of four years I went from criticising capitalism, making markets reachable to the marginalised and ultimately becoming the foot soldier of capitalism.</p>
-<p>I grew up in Baripada, and adulted in Kolkata, Cuttack, Hyderabad, Raipur and Bangalore.</p>
-<p>If you'd like to chat about anything please reach out at aditya.sarangi65@gmail.com.</p>
 
-<h3>Contact</h3>
-<ul>
-    <li>Email: aditya.sarangi65 'at' gmail 'dot' com</li>
-    <li>Twitter: <a href="https://x.com/AdityaSara45596">@adityasarangi</a></li>
-    <li><a href="https://www.linkedin.com/in/sarangii/">Linkedin</a></li>
-</ul>
+<section class="garden-section">
+    <h3 class="section-label">Rabbit Holes</h3>
+    {% for post in site.categories['rabbit-holes'] limit:3 %}
+    <div class="post-row">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    </div>
+    {% endfor %}
+    <a href="/rabbit-holes/" class="section-more">All rabbit holes →</a>
+</section>
+
+<section class="garden-section">
+    <h3 class="section-label">Music</h3>
+    {% for post in site.categories['music'] limit:3 %}
+    <div class="post-row">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    </div>
+    {% endfor %}
+    <a href="/music/" class="section-more">All music →</a>
+</section>
+
+<section class="garden-section">
+    <h3 class="section-label">Collections</h3>
+    {% for post in site.categories['collections'] limit:3 %}
+    <div class="post-row">
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+    </div>
+    {% endfor %}
+    <a href="/collections/" class="section-more">All collections →</a>
+</section>
+
+<footer class="site-bio">
+    <img src="/aditya-headshot.jpeg" alt="Aditya Sarangi" class="bio-photo">
+    <div class="bio-text">
+        <p>I work in the Founder's office of a fintech startup. Previously in the development sector at the intersection of social welfare and policy.</p>
+        <p>Grew up in Baripada. Adulted in Kolkata, Cuttack, Hyderabad, Raipur, and Bangalore.</p>
+        <p>
+            <a href="mailto:aditya.sarangi65@gmail.com">Email</a> &middot;
+            <a href="https://x.com/AdityaSara45596">Twitter</a> &middot;
+            <a href="https://www.linkedin.com/in/sarangii/">LinkedIn</a>
+        </p>
+    </div>
+</footer>

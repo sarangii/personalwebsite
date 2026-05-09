@@ -3,8 +3,8 @@ layout: default
 title: Rabbit Holes
 description: Things Aditya Sarangi has gone deep on — ideas, obsessions, and half-formed thoughts worth writing down.
 ---
-<h2>Rabbit Holes</h2>
-<p>Curiousity is a curse. Specifically speaking curiousity without obsession about it for a long time in the age of shrinking attention spans is a curse. So, here are the random rabbitholes that I get into.</p>
+<h2 class="page-title">Rabbit Holes</h2>
+<p class="page-description">Curiousity is a curse. Specifically speaking curiousity without obsession about it for a long time in the age of shrinking attention spans is a curse. So, here are the random rabbit holes that I get into.</p>
 
 {% assign posts = site.categories['rabbit-holes'] %}
 {% if posts %}
@@ -16,5 +16,5 @@ description: Things Aditya Sarangi has gone deep on — ideas, obsessions, and h
   </div>
   {% endfor %}
 {% else %}
-<p style="color: #999;">Nothing here yet.</p>
+<p class="empty-state">Nothing here yet.</p>
 {% endif %}

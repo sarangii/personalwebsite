@@ -3,8 +3,8 @@ layout: default
 title: Music
 description: What Aditya Sarangi is listening to, thinking about, and discovering.
 ---
-<h2>Music</h2>
-<p>What I'm listening to, thinking about, and discovering.</p>
+<h2 class="page-title">Music</h2>
+<p class="page-description">What I'm listening to, thinking about, and discovering.</p>
 
 {% assign posts = site.categories['music'] %}
 {% if posts %}
@@ -16,5 +16,5 @@ description: What Aditya Sarangi is listening to, thinking about, and discoverin
   </div>
   {% endfor %}
 {% else %}
-<p style="color: #999;">Nothing here yet.</p>
+<p class="empty-state">Nothing here yet.</p>
 {% endif %}

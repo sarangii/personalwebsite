@@ -3,8 +3,8 @@ layout: default
 title: Collections
 description: Curated things — links, quotes, books, and other bits worth keeping.
 ---
-<h2>Collections</h2>
-<p>Curated things — links, quotes, books, and other bits worth keeping.</p>
+<h2 class="page-title">Collections</h2>
+<p class="page-description">Curated things — links, quotes, books, and other bits worth keeping.</p>
 
 {% assign posts = site.categories['collections'] %}
 {% if posts %}
@@ -16,5 +16,5 @@ description: Curated things — links, quotes, books, and other bits worth keepi
   </div>
   {% endfor %}
 {% else %}
-<p style="color: #999;">Nothing here yet.</p>
+<p class="empty-state">Nothing here yet.</p>
 {% endif %}
