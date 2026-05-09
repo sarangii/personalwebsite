@@ -3,7 +3,7 @@ layout: default
 ---
 <article>
     <h2>{{ page.title }}</h2>
-    <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}</p>
+    <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}{% if page.updated %} · Updated {{ page.updated | date: "%B %-d, %Y" }}{% endif %}</p>
     {{ content }}
     <div class="nav-back">
         <a href="/{{ page.category }}/">← Back</a>
