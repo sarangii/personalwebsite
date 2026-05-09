@@ -356,6 +356,34 @@ h1 {
   }
 }
 
+.post-entry {
+    margin-bottom: 30px;
+    padding-bottom: 25px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-entry h3 {
+    margin: 0 0 4px 0;
+    font-size: 1.1em;
+    font-weight: normal;
+}
+
+.post-entry h3 a {
+    color: #222;
+    text-decoration: none;
+}
+
+.post-entry h3 a:hover {
+    color: #008080;
+    text-decoration: underline;
+}
+
+.post-date {
+    color: #999;
+    font-size: 0.85em;
+    margin: 0 0 8px 0;
+}
+
 a, .sidebar ul li a, .toc-list a, .footnote-ref, .footnote-back, .nav-back a {
     color: #008080;
     text-decoration: none;
