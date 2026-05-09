@@ -24,3 +24,39 @@ layout: default
         <a href="/{{ page.category }}/">← Back</a>
     </div>
 </article>
+
+<section class="comments-section">
+    <h3 class="comments-heading">Comments</h3>
+
+    <div id="comments-list" class="comments-list">
+        <p class="no-comments">Loading…</p>
+    </div>
+
+    <form id="comment-form" class="comment-form" data-slug="{{ page.url }}" novalidate>
+        <p class="form-heading">Leave a comment</p>
+
+        <div class="form-row">
+            <div class="form-field">
+                <label for="c-name">Name</label>
+                <input type="text" id="c-name" name="name" placeholder="Your name" required autocomplete="name">
+            </div>
+            <div class="form-field">
+                <label for="c-email">Email <span class="field-note">(not published)</span></label>
+                <input type="email" id="c-email" name="email" placeholder="you@example.com" required autocomplete="email">
+            </div>
+        </div>
+
+        <div class="form-field">
+            <label for="c-body">Comment</label>
+            <textarea id="c-body" name="body" rows="5" placeholder="Write your comment…" required></textarea>
+        </div>
+
+        <div id="form-error" class="form-error" aria-live="polite"></div>
+        <div id="form-success" class="form-success" aria-live="polite"></div>
+
+        <button type="submit" class="form-submit">Leave a comment</button>
+    </form>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="/assets/js/comments.js"></script>
