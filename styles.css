@@ -72,6 +72,7 @@ body {
   display: inline-block;
   line-height: 1;
   flex-shrink: 0;
+  transform: rotate(-90deg);
   transition: color 0.15s ease, transform 0.2s ease;
 }
 
@@ -79,7 +80,7 @@ body {
 
 .nav-name:hover {
   color: var(--accent-hover);
-  transform: scale(1.08);
+  transform: rotate(-90deg) scale(1.08);
 }
 
 .nav-links {
