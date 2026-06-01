@@ -7,8 +7,11 @@ description: Aditya Sarangi works in the Founder's office of a fintech startup. 
     <h3 class="section-label">Rabbit Holes</h3>
     {% for post in site.categories['rabbit-holes'] limit:3 %}
     <div class="post-row">
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <div class="post-row-header">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </div>
+        {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
     </div>
     {% endfor %}
     <a href="/rabbit-holes/" class="section-more">All rabbit holes →</a>
@@ -18,8 +21,11 @@ description: Aditya Sarangi works in the Founder's office of a fintech startup. 
     <h3 class="section-label">Music</h3>
     {% for post in site.categories['music'] limit:3 %}
     <div class="post-row">
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <div class="post-row-header">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </div>
+        {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
     </div>
     {% endfor %}
     <a href="/music/" class="section-more">All music →</a>
@@ -29,8 +35,11 @@ description: Aditya Sarangi works in the Founder's office of a fintech startup. 
     <h3 class="section-label">Collections</h3>
     {% for post in site.categories['collections'] limit:3 %}
     <div class="post-row">
-        <a href="{{ post.url }}">{{ post.title }}</a>
-        <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        <div class="post-row-header">
+            <a href="{{ post.url }}">{{ post.title }}</a>
+            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
+        </div>
+        {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
     </div>
     {% endfor %}
     <a href="/collections/" class="section-more">All collections →</a>

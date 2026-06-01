@@ -158,12 +158,15 @@ body {
 }
 
 .post-row {
+  padding: 13px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.post-row-header {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 16px;
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
 }
 
 .post-row a,
@@ -186,6 +189,13 @@ body {
   white-space: nowrap;
   flex-shrink: 0;
   font-variant-numeric: tabular-nums;
+}
+
+.post-description {
+  margin: 5px 0 0;
+  font-size: 0.8125rem;
+  color: var(--ink-secondary);
+  line-height: 1.55;
 }
 
 .section-more {
@@ -605,11 +615,6 @@ a:hover { color: var(--accent-hover); }
 
   article h2,
   .page-title { font-size: 1.4rem; }
-
-  .post-row {
-    flex-direction: column;
-    gap: 2px;
-  }
 
   .form-row { grid-template-columns: 1fr; }
 
