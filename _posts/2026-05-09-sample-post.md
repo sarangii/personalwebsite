@@ -1,9 +1,9 @@
 ---
 layout: post
-title: "Sample Post — Delete This"
-date: 2026-05-09
+title: "On Mile Sur Mera Tumahara"
+date: 2026-06-01
 category: rabbit-holes
-description: This is a sample post to show you the format. Delete it when you write your first real one.
+description: The most iconic ad of 80's of national integration
 ---
 
 This is the body of your post. Write whatever you want here.
