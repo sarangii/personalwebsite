@@ -1,59 +1,41 @@
 ---
 layout: default
-description: Aditya Sarangi works in the Founder's office of a fintech startup. Writing about ideas, music, and the things that pull his attention.
+description: Essays and notes by Aditya Sarangi on ideas, music, culture, and the things that pull his attention.
 ---
 
-<section class="garden-section">
-    <h3 class="section-label">Rabbit Holes</h3>
-    {% for post in site.categories['rabbit-holes'] limit:3 %}
-    <div class="post-row">
-        <div class="post-row-header">
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        </div>
-        {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
+<section class="writing-list" id="writing" aria-labelledby="writing-title">
+    <div class="page-intro">
+        <h1 id="writing-title">Writing</h1>
+        <p>Essays and notes on ideas, music, culture, and the things that pull my attention.</p>
     </div>
+
+    {% for post in site.posts %}
+    <article class="writing-item">
+        <div class="writing-item-main">
+            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+            {% if post.description %}<p>{{ post.description }}</p>{% endif %}
+            <span class="writing-meta">
+                {{ post.category | replace: '-', ' ' }}
+                <span aria-hidden="true">·</span>
+                {{ post.date | date: "%B %-d, %Y" }}
+            </span>
+        </div>
+    </article>
+    {% else %}
+    <p class="empty-state">The first piece is on its way.</p>
     {% endfor %}
-    <a href="/rabbit-holes/" class="section-more">All rabbit holes →</a>
 </section>
 
-<section class="garden-section">
-    <h3 class="section-label">Music</h3>
-    {% for post in site.categories['music'] limit:3 %}
-    <div class="post-row">
-        <div class="post-row-header">
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        </div>
-        {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
-    </div>
-    {% endfor %}
-    <a href="/music/" class="section-more">All music →</a>
-</section>
-
-<section class="garden-section">
-    <h3 class="section-label">Collections</h3>
-    {% for post in site.categories['collections'] limit:3 %}
-    <div class="post-row">
-        <div class="post-row-header">
-            <a href="{{ post.url }}">{{ post.title }}</a>
-            <span class="post-date">{{ post.date | date: "%b %-d, %Y" }}</span>
-        </div>
-        {% if post.description %}<p class="post-description">{{ post.description }}</p>{% endif %}
-    </div>
-    {% endfor %}
-    <a href="/collections/" class="section-more">All collections →</a>
-</section>
-
-<footer class="site-bio">
-    <img src="/aditya-headshot.jpeg" alt="Aditya Sarangi" class="bio-photo">
-    <div class="bio-text">
-        <p>I work in the Founder's office of a fintech startup. Previously in the development sector at the intersection of social welfare and policy.</p>
+<section class="about" id="about" aria-labelledby="about-title">
+    <img src="/aditya-headshot.jpeg" alt="Aditya Sarangi" class="about-photo">
+    <div>
+        <h2 id="about-title">About</h2>
+        <p>I work in the Founder's office of a fintech startup. Previously, I worked in the development sector at the intersection of social welfare and policy.</p>
         <p>Grew up in Baripada. Adulted in Kolkata, Cuttack, Hyderabad, Raipur, and Bangalore.</p>
-        <p>
-            <a href="mailto:aditya.sarangi65@gmail.com">Email</a> &middot;
-            <a href="https://x.com/AdityaSara45596">Twitter</a> &middot;
+        <p class="about-links">
+            <a href="mailto:aditya.sarangi65@gmail.com">Email</a>
+            <a href="https://x.com/AdityaSara45596">Twitter</a>
             <a href="https://www.linkedin.com/in/sarangii/">LinkedIn</a>
         </p>
     </div>
-</footer>
+</section>

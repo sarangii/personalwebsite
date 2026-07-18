@@ -2,7 +2,7 @@
 layout: post
 title: "On Mile Sur Mera Tumahara"
 date: 2026-06-01
-category: blog
+category: rabbit-holes
 description: The most iconic ad of 80's of national integration
 ---
 On August 15 1988, a song played when Rajiv Gandhi finished his Independence Day's speech instead of national anthem. [*Mile Sur Mera Tumahara*](https://youtu.be/k8DtPqXjptM) - would come to define the theme of national integration for its reach and emotions it evoked in the media starved India of late 80's and 90's. 
@@ -15,4 +15,4 @@ The jingle started with Bhimsen Joshi in his signature husky voice singing behin
 
 This jingle can be critiqued in a many ways. Primary among them would be that it has overwhelmingly large parts in Hindi and not enough regional representation. Due to credits must given to the creators for not having any religious undertones. 
 
-The 2011 attempt was a caricature of the original version. Recreating another *Mile Sur Mera Tumahara* for present day will require imagination to show rapidly changing India, regional diversity and an active negotiation with various identities. India needs a contemporary Piyush Pandey and Bhimsen Joshi to create the next *Mile Sur Mera Tumahara*. 
+The 2011 attempt was a caricature of the original version. Recreating another *Mile Sur Mera Tumahara* for present day will require imagination to show rapidly changing India, regional diversity and an active negotiation with various identities. India needs a contemporary Piyush Pandey and Bhimsen Joshi to create the next *Mile Sur Mera Tumahara*.
