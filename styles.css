@@ -55,7 +55,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 /* ---------- header ---------- */
 
 .site-header {
-  background: color-mix(in srgb, var(--paper) 90%, transparent);
+  background: color-mix(in srgb, var(--paper) 97%, transparent);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   border-bottom: 1px solid var(--line);
@@ -260,6 +260,13 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   transform-origin: left;
   z-index: 20;
 }
+@supports (animation-timeline: scroll()) {
+  .read-progress {
+    animation: read-grow linear both;
+    animation-timeline: scroll(root);
+  }
+}
+@keyframes read-grow { to { transform: scaleX(1); } }
 
 /* ---------- list pages ---------- */
 
@@ -279,7 +286,10 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .post-entry p { margin: 5px 0 0; color: var(--secondary); font-size: .92rem; }
 .empty-state { color: var(--muted); }
 
-/* ---------- bottom-edge peek ---------- */
+/* ---------- bottom-edge peek (CSS only) ---------- */
+
+.peek-toggle { position: absolute; opacity: 0; pointer-events: none; }
+.peek-toggle:checked + .peek { display: none; }
 
 .peek {
   position: fixed;
@@ -290,13 +300,24 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   align-items: flex-end;
   gap: 8px;
   transform: translateY(115%);
-  pointer-events: none;
-  transition: transform .9s cubic-bezier(.5, 0, .75, .4);
+  visibility: hidden;
 }
-.peek.up {
-  transform: translateY(0);
-  pointer-events: auto;
-  transition: transform .65s cubic-bezier(.34, 1.56, .64, 1);
+
+/* Where scroll-driven animations exist: slide up past ~55% of the page */
+@supports (animation-timeline: scroll()) {
+  .peek {
+    animation: peek-up cubic-bezier(.34, 1.56, .64, 1) both;
+    animation-timeline: scroll(root);
+    animation-range: 50% 62%;
+  }
+}
+/* Elsewhere: slide up after a short wait */
+@supports not (animation-timeline: scroll()) {
+  .peek { animation: peek-up .65s cubic-bezier(.34, 1.56, .64, 1) 8s both; }
+}
+@keyframes peek-up {
+  from { transform: translateY(115%); visibility: hidden; }
+  to { transform: translateY(0); visibility: visible; }
 }
 
 .peek-link {
@@ -337,7 +358,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   shape-rendering: crispEdges;
   transform-origin: bottom center;
 }
-.peek.up .peek-art { animation: peek-wiggle 3.2s ease-in-out 1s infinite; }
+.peek-art { animation: peek-wiggle 3.2s ease-in-out 1s infinite; }
 @keyframes peek-wiggle {
   0%, 88%, 100% { transform: rotate(0); }
   92% { transform: rotate(-4deg); }
@@ -360,6 +381,7 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
   font: inherit;
   font-size: .85rem;
   line-height: 22px;
+  text-align: center;
   cursor: pointer;
   box-shadow: 0 0 0 1px var(--line);
 }
@@ -385,8 +407,8 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   body { animation: none; }
-  .peek, .peek.up { transition: none; }
-  .peek.up .peek-art { animation: none; }
+  .peek { animation: none; transform: none; visibility: visible; }
+  .peek-art { animation: none; }
   .writing-item, .writing-item::before, .header-inner nav a::after { transition: none; }
 }
 
