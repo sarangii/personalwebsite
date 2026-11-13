@@ -20,7 +20,8 @@
     <script>
         (function () {
             var savedTheme = localStorage.getItem('theme');
-            if (savedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+            var theme = savedTheme === 'dark' ? 'dark' : 'light';
+            document.documentElement.dataset.theme = theme;
         }());
     </script>
 </head>
@@ -36,6 +37,7 @@
                         <path d="M7 5h10l2 8H5l2-8Z" />
                         <path d="M12 13v6M8 21h8" />
                     </svg>
+                    <span class="theme-toggle-label" aria-hidden="true">Light</span>
                 </button>
             </nav>
         </div>
@@ -65,12 +67,13 @@
                 toggle.setAttribute('aria-pressed', String(isDark));
                 toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
                 toggle.classList.toggle('is-on', isDark);
+                toggle.querySelector('.theme-toggle-label').textContent = isDark ? 'Dark' : 'Light';
             }
 
             toggle.addEventListener('click', function () {
                 var isDark = document.documentElement.dataset.theme === 'dark';
                 if (isDark) {
-                    delete document.documentElement.dataset.theme;
+                    document.documentElement.dataset.theme = 'light';
                     localStorage.setItem('theme', 'light');
                 } else {
                     document.documentElement.dataset.theme = 'dark';

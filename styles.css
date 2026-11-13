@@ -80,20 +80,23 @@ a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outlin
 .header-inner nav a:hover { color: var(--ink); }
 
 .theme-toggle {
-  width: 34px;
+  min-width: 76px;
   height: 34px;
-  padding: 0;
+  padding: 0 11px;
   border: 1px solid var(--ink);
   border-radius: 999px;
   background: var(--ink);
   color: var(--paper);
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
   cursor: pointer;
   transition: background .25s ease, color .25s ease;
 }
 .theme-toggle:hover { background: transparent; color: var(--ink); }
 .theme-lamp { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-linecap: round; stroke-linejoin: round; stroke-width: 1.7; }
+.theme-toggle-label { font: 400 .72rem/1 var(--sans); letter-spacing: .02em; }
 .theme-toggle.is-on .theme-lamp path:first-child { fill: currentColor; }
 
 .content { padding: 72px 0 160px; }
