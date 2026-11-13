@@ -17,6 +17,12 @@
     <meta property="og:image" content="https://adityasarangi.com/aditya-headshot.jpeg">
     <meta name="twitter:card" content="summary">
 
+    <script>
+        (function () {
+            var savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') document.documentElement.dataset.theme = 'dark';
+        }());
+    </script>
 </head>
 <body>
     <header class="site-header">
@@ -25,6 +31,9 @@
             <nav aria-label="Main navigation">
                 <a href="/#writing">Writing</a>
                 <a href="/#about">About</a>
+                <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode">
+                    <span aria-hidden="true">Dark mode</span>
+                </button>
             </nav>
         </div>
     </header>
@@ -43,5 +52,32 @@
         <label class="peek-close" for="peek-dismiss" title="Dismiss">×</label>
     </aside>
     {% endif %}
+    <script>
+        (function () {
+            var toggle = document.querySelector('.theme-toggle');
+            if (!toggle) return;
+
+            function updateToggle() {
+                var isDark = document.documentElement.dataset.theme === 'dark';
+                toggle.setAttribute('aria-pressed', String(isDark));
+                toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
+                toggle.firstElementChild.textContent = isDark ? 'Light mode' : 'Dark mode';
+            }
+
+            toggle.addEventListener('click', function () {
+                var isDark = document.documentElement.dataset.theme === 'dark';
+                if (isDark) {
+                    delete document.documentElement.dataset.theme;
+                    localStorage.setItem('theme', 'light');
+                } else {
+                    document.documentElement.dataset.theme = 'dark';
+                    localStorage.setItem('theme', 'dark');
+                }
+                updateToggle();
+            });
+
+            updateToggle();
+        }());
+    </script>
 </body>
 </html>
