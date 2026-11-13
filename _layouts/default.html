@@ -32,7 +32,10 @@
                 <a href="/#writing">Writing</a>
                 <a href="/#about">About</a>
                 <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode">
-                    <span aria-hidden="true">Dark mode</span>
+                    <svg class="theme-lamp" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+                        <path d="M7 5h10l2 8H5l2-8Z" />
+                        <path d="M12 13v6M8 21h8" />
+                    </svg>
                 </button>
             </nav>
         </div>
@@ -61,7 +64,7 @@
                 var isDark = document.documentElement.dataset.theme === 'dark';
                 toggle.setAttribute('aria-pressed', String(isDark));
                 toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-                toggle.firstElementChild.textContent = isDark ? 'Light mode' : 'Dark mode';
+                toggle.classList.toggle('is-on', isDark);
             }
 
             toggle.addEventListener('click', function () {
