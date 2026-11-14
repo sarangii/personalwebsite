@@ -5,10 +5,11 @@ description: Essays and notes by Aditya Sarangi on ideas, music, culture, and th
 
 <section class="writing-list" id="writing" aria-labelledby="writing-title">
     <div class="page-intro">
-        <h1 id="writing-title">Writing</h1>
+        <h1 id="writing-title">Writing &amp; other curiosities</h1>
         <p>Essays and notes on ideas, music, culture, and the things that pull my attention.</p>
     </div>
 
+    <div class="writing-grid">
     {% for post in site.posts %}
     <article class="writing-item">
         <div class="writing-item-main">
@@ -20,10 +21,12 @@ description: Essays and notes by Aditya Sarangi on ideas, music, culture, and th
                 {{ post.date | date: "%B %-d, %Y" }}
             </span>
         </div>
+        <a class="essay-art art-{{ forloop.index | modulo: 2 }}" href="{{ post.url }}" aria-label="Read {{ post.title | escape }}"><span aria-hidden="true">{% if forloop.index == 1 %}✳{% else %}♫{% endif %}</span></a>
     </article>
     {% else %}
     <p class="empty-state">The first piece is on its way.</p>
     {% endfor %}
+    </div>
 </section>
 
 <section class="about" id="about" aria-labelledby="about-title">
