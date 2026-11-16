@@ -8,3 +8,7 @@ plugins:
 - jekyll-optional-font-matter
 theme: null
 permalink: /:title/
+
+# Internal design records must not be included in the published site.
+exclude:
+- DESIGN_RECORD_2026-11-16.md

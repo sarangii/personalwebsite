@@ -1,20 +1,9 @@
 ---
-layout: default
-title: Rabbit Holes
-description: Things Aditya Sarangi has gone deep on — ideas, obsessions, and half-formed thoughts worth writing down.
+layout: category
+title: Rabbit holes
+category: rabbit-holes
+chapter: I
+symbol: rings
+description: Ideas, obsessions, and half-formed thoughts worth writing down.
 ---
-<h1 class="page-title">Rabbit Holes</h1>
-<p class="page-description">Curiousity is a curse. Specifically speaking curiousity without obsession about it for a long time in the age of shrinking attention spans is a curse. So, here are the random rabbit holes that I get into.</p>
-
-{% assign posts = site.categories['rabbit-holes'] %}
-{% if posts %}
-  {% for post in posts %}
-  <div class="post-entry">
-      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-      <p class="post-date">{{ post.date | date: "%B %-d, %Y" }}</p>
-      {% if post.description %}<p>{{ post.description }}</p>{% endif %}
-  </div>
-  {% endfor %}
-{% else %}
-<p class="empty-state">Nothing here yet.</p>
-{% endif %}
+<p>Curiosity is a curse. Specifically, curiosity without a lasting obsession, in an age of shrinking attention spans. Here are the random rabbit holes I get into.</p>

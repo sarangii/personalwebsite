@@ -1,20 +1,9 @@
 ---
-layout: default
+layout: category
 title: Collections
+category: collections
+chapter: III
+symbol: bars
 description: Curated things — links, quotes, books, and other bits worth keeping.
 ---
-<h1 class="page-title">Collections</h1>
-<p class="page-description">Curated things — links, quotes, books, and other bits worth keeping.</p>
-
-{% assign posts = site.categories['collections'] %}
-{% if posts %}
-  {% for post in posts %}
-  <div class="post-entry">
-      <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-      <p class="post-date">{{ post.date | date: "%B %-d, %Y" }}</p>
-      {% if post.description %}<p>{{ post.description }}</p>{% endif %}
-  </div>
-  {% endfor %}
-{% else %}
-<p class="empty-state">Nothing here yet.</p>
-{% endif %}
+<p>Curated things — links, quotes, books, and other bits worth keeping.</p>

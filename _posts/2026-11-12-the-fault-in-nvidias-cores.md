@@ -1,5 +1,6 @@
 ---
 layout: post
+cover_art: circuits
 title: "The fault in NVIDIA's cores"
 date: 2026-11-12
 category: rabbit-holes

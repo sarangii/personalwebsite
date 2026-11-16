@@ -2,48 +2,28 @@
 layout: default
 description: Essays and notes by Aditya Sarangi on ideas, music, culture, and the things that pull his attention.
 ---
-
+<section class="front-cover" aria-labelledby="cover-title">
+    <div class="cover-heading">
+        <div class="hero-title"><p class="eyebrow">The personal journal of Aditya Sarangi</p><h1 id="cover-title">A curious<br>state of <em>mind.</em></h1></div>
+        <div class="hero-aside"><span class="publisher-seal" aria-hidden="true">IDEAS<br>&amp; OTHER<br><b>CURIOSITIES</b></span><p>Essays on ideas, culture,<br>and things that pull<br>my attention.</p><a href="#writing" class="text-link">Open the notebook <span aria-hidden="true">↓</span></a></div>
+    </div>
+    <img class="hero-art" src="{{ '/assets/curiosity.svg' | relative_url }}" alt="" width="1000" height="320">
+    <div class="cover-colophon"><span>An ongoing collection</span><span>Read slowly. Stay curious.</span></div>
+</section>
 <section class="writing-list" id="writing" aria-labelledby="writing-title">
-    <div class="section-heading">
-        <h1 id="writing-title">Writing &amp; other curiosities</h1>
-        <span class="section-note">Essays &amp; notes</span>
-    </div>
-    <div class="writing-grid">
-        {% for post in site.posts %}
-        <article class="writing-item">
-            <a class="essay-art art-{{ forloop.index | modulo: 2 }}" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
-                {% assign art_index = forloop.index | modulo: 2 %}
-                <img src="{{ '/assets/editorial-' | append: art_index | append: '.svg' | relative_url }}" alt="" width="900" height="540">
-                <span class="art-caption">{{ post.category | replace: '-', ' ' }} <span>↗</span></span>
-            </a>
-            <div class="writing-item-main">
-                <div class="writing-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d.%m.%Y" }}</time><span>{{ post.category | replace: '-', ' ' }}</span></div>
-                <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
-                <p class="byline">Aditya Sarangi</p>
-                {% if post.description %}<p class="story-description">{{ post.description }}</p>{% endif %}
-            </div>
-        </article>
-        {% else %}
-        <p class="empty-state">The first piece is on its way.</p>
-        {% endfor %}
-    </div>
+    <div class="section-heading"><div><span class="eyebrow">01 / The reading room</span><h2 id="writing-title">Selected writing</h2></div><span class="section-note">Ideas worth spending time with.</span></div>
+    <div class="writing-grid">{% for post in site.posts %}{% include book-card.html post=post number=forloop.index %}{% else %}<p class="empty-state">The first piece is on its way.</p>{% endfor %}</div>
 </section>
-
 <section class="interests" aria-labelledby="interests-title">
-    <div class="section-heading"><h2 id="interests-title">Elsewhere in this notebook</h2><span class="section-note">Follow a thread</span></div>
+    <div class="section-heading"><div><span class="eyebrow">02 / A table of contents</span><h2 id="interests-title">Follow a thread</h2></div></div>
     <div class="interests-grid">
-        <a href="/rabbit-holes.html"><span class="interest-number">01 / Ideas</span><h3>Rabbit holes <span aria-hidden="true">↗</span></h3><p>Ideas, obsessions, and half-formed thoughts worth writing down.</p></a>
-        <a href="/music.html"><span class="interest-number">02 / Listening</span><h3>Music <span aria-hidden="true">↗</span></h3><p>What I’m listening to, thinking about, and discovering.</p></a>
-        <a href="/collections.html"><span class="interest-number">03 / Keeping</span><h3>Collections <span aria-hidden="true">↗</span></h3><p>Links, quotes, books, and other bits worth keeping.</p></a>
+        <a class="interest interest-ideas" href="{{ '/rabbit-holes.html' | relative_url }}"><span class="interest-number">I / Ideas</span><span class="interest-symbol rings" aria-hidden="true"></span><h3>Rabbit holes <span aria-hidden="true">↗</span></h3><p>Ideas, obsessions, and half-formed thoughts worth writing down.</p></a>
+        <a class="interest interest-music" href="{{ '/music.html' | relative_url }}"><span class="interest-number">II / Listening</span><span class="interest-symbol waves" aria-hidden="true"></span><h3>Music <span aria-hidden="true">↗</span></h3><p>What I’m listening to, thinking about, and discovering.</p></a>
+        <a class="interest interest-collections" href="{{ '/collections.html' | relative_url }}"><span class="interest-number">III / Keeping</span><span class="interest-symbol bars" aria-hidden="true"></span><h3>Collections <span aria-hidden="true">↗</span></h3><p>Links, quotes, books, and other bits worth keeping.</p></a>
     </div>
 </section>
-
 <section class="about" id="about" aria-labelledby="about-title">
-    <div class="about-heading"><span class="eyebrow">A note from the author</span><h2 id="about-title">Always<br>a little<br><em>curious.</em></h2></div>
-    <div class="about-copy">
-        <p>I work in the Founder's office of a fintech startup. Previously, I worked in the development sector at the intersection of social welfare and policy.</p>
-        <p>Grew up in Baripada. Adulted in Kolkata, Cuttack, Hyderabad, Raipur, and Bangalore.</p>
-        <a class="text-link" href="mailto:aditya.sarangi65@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
-    </div>
-    <figure class="about-portrait"><img src="/aditya-headshot.jpeg" alt="Aditya Sarangi" class="about-photo" loading="lazy" width="480" height="600"><figcaption>Aditya Sarangi</figcaption></figure>
+    <div class="about-heading"><span class="eyebrow">03 / About the author</span><h2 id="about-title">Always<br>a little<br><em>curious.</em></h2><span class="author-signature">Aditya Sarangi</span></div>
+    <div class="about-copy"><p>I work in the Founder's office of a fintech startup. Previously, I worked in the development sector at the intersection of social welfare and policy.</p><p>Grew up in Baripada. Adulted in Kolkata, Cuttack, Hyderabad, Raipur, and Bangalore.</p><a class="text-link" href="mailto:aditya.sarangi65@gmail.com">Get in touch <span aria-hidden="true">↗</span></a></div>
+    <figure class="about-portrait"><img src="{{ '/aditya-headshot.jpeg' | relative_url }}" alt="Aditya Sarangi" class="about-photo" loading="lazy" width="480" height="600"><figcaption>A work in progress, as always.</figcaption></figure>
 </section>

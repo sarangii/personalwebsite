@@ -1,5 +1,6 @@
 ---
 layout: post
+cover_art: melody
 title: "On Mile Sur Mera Tumahara"
 date: 2026-06-01
 category: rabbit-holes

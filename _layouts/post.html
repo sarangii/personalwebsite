@@ -1,14 +1,16 @@
 ---
 layout: default
 ---
-<div class="read-progress" aria-hidden="true"></div>
+<a class="back-link" href="{{ '/' | relative_url }}#writing">← The reading room</a>
 <article class="post">
-    <header class="post-header">
+    <header class="post-header cover-{{ page.cover_art | default: 'circuits' }}">
         <p class="post-category">{{ page.category | replace: '-', ' ' }}</p>
         <h1>{{ page.title }}</h1>
         {% if page.description %}<p class="post-deck">{{ page.description }}</p>{% endif %}
         <p class="byline">Aditya Sarangi</p>
         <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}{% if page.updated %} · Updated {{ page.updated | date: "%B %-d, %Y" }}{% endif %}</p>
+        {% assign cover = page.cover_art | default: 'circuits' %}
+        <img class="post-header-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="350" alt="">
     </header>
 
     <div class="post-body">
@@ -16,7 +18,7 @@ layout: default
     </div>
 
     <footer class="post-footer">
-        <a href="/">← All writing</a>
+        <a href="{{ '/' | relative_url }}#writing">← All writing</a>
         <a href="mailto:aditya.sarangi65@gmail.com?subject=Reply to: {{ page.title | url_encode }}">Reply by email</a>
     </footer>
 </article>

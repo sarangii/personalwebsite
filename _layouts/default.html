@@ -5,8 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/styles.css?v={{ site.time | date: '%s' }}">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v={{ site.time | date: '%s' }}">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><g transform=%22rotate(-90 50 50)%22><text y=%22.9em%22 font-size=%2290%22 fill=%22%234A7C3A%22>%E0%AC%86</text></g></svg>">
 
     <title>{% if page.title %}{{ page.title }} — {% endif %}Aditya Sarangi</title>
@@ -29,15 +29,14 @@
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-        <div class="edition-line"><span>A personal journal</span><span>Ideas, culture &amp; other curiosities</span></div>
-        <a href="/" class="site-name" aria-label="Aditya Sarangi — home">Aditya Sarangi</a>
+        <a href="{{ '/' | relative_url }}" class="site-name" aria-label="Aditya Sarangi — home"><span class="publisher-mark" aria-hidden="true">a<span>s</span></span><span>Aditya Sarangi<small>A personal journal</small></span></a>
         <div class="navigation-bar">
             <nav aria-label="Main navigation">
-                <a href="/#writing">Writing</a>
-                <a href="/rabbit-holes.html"{% if page.url == '/rabbit-holes.html' %} aria-current="page"{% endif %}>Rabbit holes</a>
-                <a href="/music.html"{% if page.url == '/music.html' %} aria-current="page"{% endif %}>Music</a>
-                <a href="/collections.html"{% if page.url == '/collections.html' %} aria-current="page"{% endif %}>Collections</a>
-                <a href="/#about">About</a>
+                <a href="{{ '/' | relative_url }}#writing">Writing</a>
+                <a href="{{ '/rabbit-holes.html' | relative_url }}"{% if page.url == '/rabbit-holes.html' %} aria-current="page"{% endif %}>Rabbit holes</a>
+                <a href="{{ '/music.html' | relative_url }}"{% if page.url == '/music.html' %} aria-current="page"{% endif %}>Music</a>
+                <a href="{{ '/collections.html' | relative_url }}"{% if page.url == '/collections.html' %} aria-current="page"{% endif %}>Collections</a>
+                <a href="{{ '/' | relative_url }}#about">About</a>
             </nav>
             <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-label">Light</span> <span aria-hidden="true">◐</span></button>
         </div>
@@ -46,8 +45,8 @@
         {{ content }}
     </main>
     <footer class="site-footer">
-        <a class="footer-name" href="/">Aditya Sarangi</a>
-        <p>A place for things that pull my attention.</p>
+        <a class="footer-name" href="{{ '/' | relative_url }}">Aditya Sarangi</a>
+        <p>End of this page. Beginning of another thought.</p>
         <nav aria-label="Social links">
             <a href="mailto:aditya.sarangi65@gmail.com">Email ↗</a>
             <a href="https://x.com/AdityaSara45596">Twitter ↗</a>
