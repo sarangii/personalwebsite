@@ -1,14 +1,43 @@
-title: Aditya Sarangi's Personal Page
-author: Aditya Sarangi
-description: Writings of Aditya Sarangi
+title: Aditya Sarangi
+tagline: A personal journal
+author:
+  name: Aditya Sarangi
+  url: https://www.adityasarangi.com/#about
+description: Essays and notes by Aditya Sarangi on ideas, technology, music, culture, and the things that pull his attention.
+url: https://www.adityasarangi.com
+baseurl: ""
+lang: en
+locale: en_IN
+timezone: Asia/Kolkata
+twitter:
+  username: AdityaSara45596
+  card: summary
+social:
+  name: Aditya Sarangi
+  links:
+  - https://x.com/AdityaSara45596
+  - https://www.linkedin.com/in/sarangii/
 plugins:
 - jekyll-seo-tag
 - jekyll-sitemap
+- jekyll-feed
 - jekyll-include-cache
-- jekyll-optional-font-matter
+- jekyll-optional-front-matter
 theme: null
 permalink: /:title/
+defaults:
+- scope:
+    path: ""
+  values:
+    image: /aditya-headshot.jpeg
+- scope:
+    path: ""
+    type: posts
+  values:
+    seo:
+      type: BlogPosting
 
-# Internal design records must not be included in the published site.
+# Internal records and build documentation must not be published.
 exclude:
 - DESIGN_RECORD_2026-11-16.md
+- README.md

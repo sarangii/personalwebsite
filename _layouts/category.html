@@ -7,5 +7,5 @@ layout: default
 </section>
 <section class="category-list" aria-label="{{ page.title }} entries">
     <div class="section-heading"><h2>On the shelf</h2>{% assign entries = site.categories[page.category] %}<span class="section-note">{{ entries | size }} {% if entries.size == 1 %}entry{% else %}entries{% endif %}</span></div>
-    <div class="writing-grid">{% for post in entries %}{% include book-card.html post=post number=forloop.index %}{% else %}<div class="empty-state"><span class="empty-mark" aria-hidden="true">↳</span><h3>A little room for what’s next.</h3><p>Nothing here yet. The collection is still taking shape.</p><a class="text-link" href="{{ '/' | relative_url }}#writing">Explore the writing <span aria-hidden="true">↗</span></a></div>{% endfor %}</div>
+    <div class="writing-grid">{% for post in entries %}{% include book-card.html post=post %}{% else %}<div class="empty-state"><span class="empty-mark" aria-hidden="true">↳</span><h3>A little room for what’s next.</h3><p>Nothing here yet. The collection is still taking shape.</p><a class="text-link" href="{{ '/' | relative_url }}#writing">Explore the writing <span aria-hidden="true">↗</span></a></div>{% endfor %}</div>
 </section>

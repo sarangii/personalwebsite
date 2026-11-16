@@ -1,0 +1,29 @@
+---
+layout: null
+sitemap: false
+---
+# Aditya Sarangi
+
+> {{ site.description }}
+
+This is Aditya Sarangi's personal journal. Essays express the author's views.
+Publication dates are shown on each article. Use the linked articles as the primary sources.
+
+## Author
+
+- [About Aditya Sarangi]({{ '/' | absolute_url }}#about): Works in the founder's office of a fintech startup; previously worked in social welfare and policy.
+
+## Essays
+{% for post in site.posts %}
+- [{{ post.title }}]({{ post.url | absolute_url }}): {{ post.description }} Published {{ post.date | date: '%Y-%m-%d' }}.
+{% endfor %}
+## Collections
+
+- [Rabbit holes]({{ '/rabbit-holes.html' | absolute_url }}): Ideas and observations.
+- [Music]({{ '/music.html' | absolute_url }}): Listening notes.
+- [Collections]({{ '/collections.html' | absolute_url }}): Links, quotes, books, and other things worth keeping.
+
+## Discovery
+
+- [Sitemap]({{ '/sitemap.xml' | absolute_url }})
+- [Atom feed]({{ '/feed.xml' | absolute_url }})

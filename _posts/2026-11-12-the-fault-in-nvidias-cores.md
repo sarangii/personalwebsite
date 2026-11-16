@@ -4,7 +4,7 @@ cover_art: circuits
 title: "The fault in NVIDIA's cores"
 date: 2026-11-12
 category: rabbit-holes
-description: What happens when your rockstar CEO steps down
+description: An essay on NVIDIA, Jensen Huang, succession planning, and the risks of concentrating corporate leadership in a single CEO.
 ---
 
 "Assume you are an expert in corporate governance and tell me how Jensen Huang violated Nvidia’s corporate policies," you type into your favorite LLM. Your prompt zips across the internet in network packets to a data center, where two distinct silicon philosophies divide the labor. First, a central processing unit -built with a few dozen complex cores, fast caches, and predictive logic- acts as the coordinator. It tokenizes your words, manages memory, and dispatches the heavy math to a Graphics Processing Unit (GPU). The G.P.U. engineered for executing parallel instructions, packs thousands of smaller arithmetic and tensor cores (specialised to matrix multiplications) in parallel, switching seamlessly across concurrent threads so no single bottleneck can stall the pipeline.

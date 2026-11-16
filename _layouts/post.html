@@ -8,7 +8,7 @@ layout: default
         <h1>{{ page.title }}</h1>
         {% if page.description %}<p class="post-deck">{{ page.description }}</p>{% endif %}
         <p class="byline">Aditya Sarangi</p>
-        <p class="post-date">{{ page.date | date: "%B %-d, %Y" }}{% if page.updated %} · Updated {{ page.updated | date: "%B %-d, %Y" }}{% endif %}</p>
+        <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} · Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %}</p>
         {% assign cover = page.cover_art | default: 'circuits' %}
         <img class="post-header-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="350" alt="">
     </header>

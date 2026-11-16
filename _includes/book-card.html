@@ -1,7 +1,12 @@
+{% assign chronological_posts = site.posts | sort: 'date' %}
+{% assign post_number = 0 %}
+{% for entry in chronological_posts %}
+    {% if entry.url == include.post.url %}{% assign post_number = forloop.index %}{% break %}{% endif %}
+{% endfor %}
 {% assign cover = include.post.cover_art | default: 'circuits' %}
 <article class="book-item">
     <a class="book-cover cover-{{ cover }}" href="{{ include.post.url | relative_url }}">
-        <div class="book-topline"><span>{{ include.post.category | replace: '-', ' ' }}</span><span>No. {{ include.number | prepend: '00' | slice: -2, 2 }}</span></div>
+        <div class="book-topline"><span>{{ include.post.category | replace: '-', ' ' }}</span><span>No. {% if post_number < 10 %}0{% endif %}{{ post_number }}</span></div>
         <h3>{{ include.post.title }}</h3>
         <p class="cover-author">Aditya Sarangi</p>
         <img class="cover-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="350" alt="" loading="lazy">

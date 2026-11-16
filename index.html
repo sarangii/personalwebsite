@@ -12,7 +12,7 @@ description: Essays and notes by Aditya Sarangi on ideas, music, culture, and th
 </section>
 <section class="writing-list" id="writing" aria-labelledby="writing-title">
     <div class="section-heading"><div><span class="eyebrow">01 / The reading room</span><h2 id="writing-title">Selected writing</h2></div><span class="section-note">Ideas worth spending time with.</span></div>
-    <div class="writing-grid">{% for post in site.posts %}{% include book-card.html post=post number=forloop.index %}{% else %}<p class="empty-state">The first piece is on its way.</p>{% endfor %}</div>
+    <div class="writing-grid">{% for post in site.posts %}{% include book-card.html post=post %}{% else %}<p class="empty-state">The first piece is on its way.</p>{% endfor %}</div>
 </section>
 <section class="interests" aria-labelledby="interests-title">
     <div class="section-heading"><div><span class="eyebrow">02 / A table of contents</span><h2 id="interests-title">Follow a thread</h2></div></div>

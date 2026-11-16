@@ -311,3 +311,33 @@ These are temporary local files, not committed project assets, and may be remove
 ## 16. Completion state
 
 The redesign is implemented as local source changes. It has not been committed, pushed, or published as part of this work. Its core visual direction is a warm, graphic paperback collection: condensed headlines, serif reading text, original abstract artwork, and consistent cover treatments across the homepage, categories, and essays.
+
+## 17. Change log — chronological post numbering and search discovery (2026-11-16)
+
+### Requested behavior
+
+Keep the newest-first reading order, but number posts in publication order: **The fault in NVIDIA's cores — No. 02** and **On Mile Sur Mera Tumahara — No. 01**. The shared card now looks up each post in the full archive sorted by its declared publication date. Category listings use the same global number. Newer posts do not renumber older entries; inserting backdated posts or changing publication dates can change the sequence. Numbers retain two-digit padding below ten and no longer truncate at 100. This supersedes the numbering limitation in section 15.
+
+### SEO and machine discovery changes
+
+- `_config.yml`: set the canonical HTTPS origin to `https://www.adityasarangi.com`, matching `CNAME`; configure language, locale, timezone, author URL, social profiles, Twitter card, default image, and `BlogPosting` structured-data type. Correct the existing `jekyll-optional-font-matter` typo to `jekyll-optional-front-matter`. Enable `jekyll-feed` alongside the existing sitemap and SEO plugins. Exclude README as well as this internal record from publication.
+- `_layouts/default.html`: activate `{% seo %}` as the single metadata source, replacing the incomplete manual tags. The plugin supplies titles, descriptions, canonical URLs, Open Graph/Twitter metadata, and JSON-LD. Add index/follow and large-image-preview permissions, feed autodiscovery, an LLM-index discovery link, and a visible RSS / Atom footer link.
+- `_layouts/post.html`: mark publication and optional update dates with machine-readable `time` elements.
+- Both posts: replace vague descriptions with specific summaries of their subjects; article bodies and URLs are unchanged.
+- `food/index_food.md`: add front matter and the shared layout so this legacy public page receives a title, description, and the site's metadata.
+- `robots.txt`: permit crawlers through the wildcard user-agent group and advertise the canonical sitemap URL. This includes search and AI crawlers that respect the wildcard group; it does not impose a separate training-crawler policy.
+- `llms.txt`: provide a lightweight, build-generated author and article index with canonical links, descriptions, publication dates, collection links, sitemap, and feed. It stays synchronized with published posts. This is a supplementary convention, not a requirement or guarantee for AI search inclusion.
+- `_includes/book-card.html`, `index.html`, and `_layouts/category.html`: centralize chronological numbering in the card rather than passing the current listing position.
+
+The site continues to expose article content as static HTML with ordinary crawlable links. No additional client-side framework is required for discovery. The standalone biodata print document was not changed by this journal SEO update.
+
+### Verification and limits
+
+- Passed LiquidJS rendering checks for the two existing numbers, global rather than category-relative numbering, a synthetic 100th post, generated `robots.txt` and `llms.txt`, and all article links in the LLM index.
+- Passed Ruby YAML validation, canonical-host agreement with `CNAME`, plugin configuration checks, and `git diff --check`.
+- Confirmed a single SEO-tag invocation and feed autodiscovery in the shared layout.
+- A real Jekyll build was not completed: Jekyll is not installed, the sandboxed gem download failed DNS resolution, and the approved network retry stalled without downloading gems and was interrupted. LiquidJS checks do not validate Jekyll plugin output. Generated canonical tags, JSON-LD, sitemap, and feed still need verification in the production Jekyll build.
+- No browser visual check was performed for this change. These are local source changes, not a deployment; nothing was committed or pushed.
+- After deployment, verify the public sitemap/feed/robots endpoints and submit `https://www.adityasarangi.com/sitemap.xml` in the owner's Google Search Console and Bing Webmaster Tools. Ownership verification and submissions require the owner's service access and were not performed. Hosting-level crawler restrictions must also permit access. Search engines and AI providers independently decide indexing and citation; these changes cannot guarantee visibility.
+
+Implementation references: [Jekyll SEO Tag configuration](https://jekyll.github.io/jekyll-seo-tag/usage/), [Google guidance for AI features and websites](https://developers.google.com/search/docs/appearance/ai-features), and [OpenAI crawler documentation](https://developers.openai.com/api/docs/bots).

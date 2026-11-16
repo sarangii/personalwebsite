@@ -4,7 +4,7 @@ cover_art: melody
 title: "On Mile Sur Mera Tumahara"
 date: 2026-06-01
 category: rabbit-holes
-description: The most iconic ad of 80's of national integration
+description: A reflection on Mile Sur Mera Tumahara, the 1988 song, its portrayal of India’s diversity, and the idea of national integration.
 ---
 On August 15 1988, a song played when Rajiv Gandhi finished his Independence Day's speech instead of national anthem. [*Mile Sur Mera Tumahara*](https://youtu.be/k8DtPqXjptM) - would come to define the theme of national integration for its reach and emotions it evoked in the media starved India of late 80's and 90's. 
 
