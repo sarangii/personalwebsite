@@ -4,41 +4,46 @@ description: Essays and notes by Aditya Sarangi on ideas, music, culture, and th
 ---
 
 <section class="writing-list" id="writing" aria-labelledby="writing-title">
-    <div class="page-intro">
+    <div class="section-heading">
         <h1 id="writing-title">Writing &amp; other curiosities</h1>
-        <p>Essays and notes on ideas, music, culture, and the things that pull my attention.</p>
+        <span class="section-note">Essays &amp; notes</span>
     </div>
-
     <div class="writing-grid">
-    {% for post in site.posts %}
-    <article class="writing-item">
-        <div class="writing-item-main">
-            <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-            {% if post.description %}<p>{{ post.description }}</p>{% endif %}
-            <span class="writing-meta">
-                {{ post.category | replace: '-', ' ' }}
-                <span aria-hidden="true">·</span>
-                {{ post.date | date: "%B %-d, %Y" }}
-            </span>
-        </div>
-        <a class="essay-art art-{{ forloop.index | modulo: 2 }}" href="{{ post.url }}" aria-label="Read {{ post.title | escape }}"><span aria-hidden="true">{% if forloop.index == 1 %}✳{% else %}♫{% endif %}</span></a>
-    </article>
-    {% else %}
-    <p class="empty-state">The first piece is on its way.</p>
-    {% endfor %}
+        {% for post in site.posts %}
+        <article class="writing-item">
+            <a class="essay-art art-{{ forloop.index | modulo: 2 }}" href="{{ post.url | relative_url }}" tabindex="-1" aria-hidden="true">
+                {% assign art_index = forloop.index | modulo: 2 %}
+                <img src="{{ '/assets/editorial-' | append: art_index | append: '.svg' | relative_url }}" alt="" width="900" height="540">
+                <span class="art-caption">{{ post.category | replace: '-', ' ' }} <span>↗</span></span>
+            </a>
+            <div class="writing-item-main">
+                <div class="writing-meta"><time datetime="{{ post.date | date: '%Y-%m-%d' }}">{{ post.date | date: "%d.%m.%Y" }}</time><span>{{ post.category | replace: '-', ' ' }}</span></div>
+                <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+                <p class="byline">Aditya Sarangi</p>
+                {% if post.description %}<p class="story-description">{{ post.description }}</p>{% endif %}
+            </div>
+        </article>
+        {% else %}
+        <p class="empty-state">The first piece is on its way.</p>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="interests" aria-labelledby="interests-title">
+    <div class="section-heading"><h2 id="interests-title">Elsewhere in this notebook</h2><span class="section-note">Follow a thread</span></div>
+    <div class="interests-grid">
+        <a href="/rabbit-holes.html"><span class="interest-number">01 / Ideas</span><h3>Rabbit holes <span aria-hidden="true">↗</span></h3><p>Ideas, obsessions, and half-formed thoughts worth writing down.</p></a>
+        <a href="/music.html"><span class="interest-number">02 / Listening</span><h3>Music <span aria-hidden="true">↗</span></h3><p>What I’m listening to, thinking about, and discovering.</p></a>
+        <a href="/collections.html"><span class="interest-number">03 / Keeping</span><h3>Collections <span aria-hidden="true">↗</span></h3><p>Links, quotes, books, and other bits worth keeping.</p></a>
     </div>
 </section>
 
 <section class="about" id="about" aria-labelledby="about-title">
-    <img src="/aditya-headshot.jpeg" alt="Aditya Sarangi" class="about-photo">
-    <div>
-        <h2 id="about-title">About</h2>
+    <div class="about-heading"><span class="eyebrow">A note from the author</span><h2 id="about-title">Always<br>a little<br><em>curious.</em></h2></div>
+    <div class="about-copy">
         <p>I work in the Founder's office of a fintech startup. Previously, I worked in the development sector at the intersection of social welfare and policy.</p>
         <p>Grew up in Baripada. Adulted in Kolkata, Cuttack, Hyderabad, Raipur, and Bangalore.</p>
-        <p class="about-links">
-            <a href="mailto:aditya.sarangi65@gmail.com">Email</a>
-            <a href="https://x.com/AdityaSara45596">Twitter</a>
-            <a href="https://www.linkedin.com/in/sarangii/">LinkedIn</a>
-        </p>
+        <a class="text-link" href="mailto:aditya.sarangi65@gmail.com">Get in touch <span aria-hidden="true">↗</span></a>
     </div>
+    <figure class="about-portrait"><img src="/aditya-headshot.jpeg" alt="Aditya Sarangi" class="about-photo" loading="lazy" width="480" height="600"><figcaption>Aditya Sarangi</figcaption></figure>
 </section>

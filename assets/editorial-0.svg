@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540">
+<defs><clipPath id="frame"><path d="M0 0h900v540H0z"/></clipPath></defs>
+<path d="M0 0h900v540H0z" fill="#b6bfad"/>
+<g clip-path="url(#frame)" fill="none" stroke="#3d5148" stroke-width="2">
+<ellipse cx="450" cy="262" rx="365" ry="157"/><ellipse cx="450" cy="262" rx="322" ry="157"/><ellipse cx="450" cy="262" rx="279" ry="157"/><ellipse cx="450" cy="262" rx="236" ry="157"/><ellipse cx="450" cy="262" rx="193" ry="157"/><ellipse cx="450" cy="262" rx="150" ry="157"/><ellipse cx="450" cy="262" rx="107" ry="157"/><ellipse cx="450" cy="262" rx="64" ry="157"/><ellipse cx="450" cy="262" rx="21" ry="157"/>
+<path d="M80 262H820M101 209H799M101 315H799M180 157H720M180 367H720"/>
+</g>
+<g transform="rotate(-12 450 260)" fill="#a33224"><path d="M436 105h15v190h-15zM594 78h15v190h-15zM436 105l173-27v32l-173 27z"/><ellipse cx="408" cy="303" rx="44" ry="29"/><ellipse cx="566" cy="276" rx="44" ry="29"/></g>
+<circle cx="137" cy="102" r="22" fill="#eaddaf"/>
+</svg>

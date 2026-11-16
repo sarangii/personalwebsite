@@ -19,7 +19,8 @@
 
     <script>
         (function () {
-            var savedTheme = localStorage.getItem('theme');
+            var savedTheme;
+            try { savedTheme = localStorage.getItem('theme'); } catch (error) {}
             var theme = savedTheme === 'dark' ? 'dark' : 'light';
             document.documentElement.dataset.theme = theme;
         }());
@@ -28,25 +29,32 @@
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="site-header">
-        <div class="header-inner">
-            <a href="/" class="site-name">Aditya Sarangi</a>
-            <p class="site-tagline">Ideas, culture &amp; things that pull my attention.</p>
+        <div class="edition-line"><span>A personal journal</span><span>Ideas, culture &amp; other curiosities</span></div>
+        <a href="/" class="site-name" aria-label="Aditya Sarangi — home">Aditya Sarangi</a>
+        <div class="navigation-bar">
             <nav aria-label="Main navigation">
-                <a href="/#writing"><span aria-hidden="true">✍️</span> Writing</a>
-                <a href="/rabbit-holes.html"><span aria-hidden="true">🐇</span> Rabbit holes</a>
-                <a href="/music.html"><span aria-hidden="true">🎵</span> Music</a>
-                <a href="/collections.html"><span aria-hidden="true">🪨</span> Collections</a>
-                <a href="/#about"><span aria-hidden="true">🌱</span> About</a>
-                <a href="mailto:aditya.sarangi65@gmail.com"><span aria-hidden="true">📮</span> Email</a>
-                <a href="https://x.com/AdityaSara45596"><span aria-hidden="true">🐦</span> Twitter</a>
-                <a href="https://www.linkedin.com/in/sarangii/"><span aria-hidden="true">🤓</span> LinkedIn</a>
+                <a href="/#writing">Writing</a>
+                <a href="/rabbit-holes.html"{% if page.url == '/rabbit-holes.html' %} aria-current="page"{% endif %}>Rabbit holes</a>
+                <a href="/music.html"{% if page.url == '/music.html' %} aria-current="page"{% endif %}>Music</a>
+                <a href="/collections.html"{% if page.url == '/collections.html' %} aria-current="page"{% endif %}>Collections</a>
+                <a href="/#about">About</a>
             </nav>
-            <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-label">Light</span> ↗</button>
+            <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-label">Light</span> <span aria-hidden="true">◐</span></button>
         </div>
     </header>
     <main class="content" id="main">
         {{ content }}
     </main>
+    <footer class="site-footer">
+        <a class="footer-name" href="/">Aditya Sarangi</a>
+        <p>A place for things that pull my attention.</p>
+        <nav aria-label="Social links">
+            <a href="mailto:aditya.sarangi65@gmail.com">Email ↗</a>
+            <a href="https://x.com/AdityaSara45596">Twitter ↗</a>
+            <a href="https://www.linkedin.com/in/sarangii/">LinkedIn ↗</a>
+        </nav>
+        <span class="copyright">© {{ site.time | date: '%Y' }} Aditya Sarangi</span>
+    </footer>
 
     <script>
         (function () {
@@ -65,10 +73,10 @@
                 var isDark = document.documentElement.dataset.theme === 'dark';
                 if (isDark) {
                     document.documentElement.dataset.theme = 'light';
-                    localStorage.setItem('theme', 'light');
+                    try { localStorage.setItem('theme', 'light'); } catch (error) {}
                 } else {
                     document.documentElement.dataset.theme = 'dark';
-                    localStorage.setItem('theme', 'dark');
+                    try { localStorage.setItem('theme', 'dark'); } catch (error) {}
                 }
                 updateToggle();
             });
