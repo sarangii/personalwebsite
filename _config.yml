@@ -41,3 +41,4 @@ defaults:
 exclude:
 - DESIGN_RECORD_2026-11-16.md
 - README.md
+- nordic-transfer-studio
