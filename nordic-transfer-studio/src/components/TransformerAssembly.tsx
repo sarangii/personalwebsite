@@ -7,10 +7,9 @@ const TransformerScene = lazy(() => import("@/game/transformer/TransformerScene"
 
 export function TransformerAssembly() {
   const control = useRef<SceneControl>({ explode: 0, auto: true });
-  const sliderRef = useRef<HTMLInputElement>(null);
-  const percentRef = useRef<HTMLOutputElement>(null);
   const [auto, setAutoState] = useState(true);
   const [label, setLabel] = useState("Assembled");
+  const [annotationGroup, setAnnotationGroup] = useState<number | null>(null);
   const [group, setGroup] = useState<number | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [hover, setHover] = useState<{ id: string; x: number; y: number } | null>(null);
@@ -23,9 +22,8 @@ export function TransformerAssembly() {
   const setExplode = useCallback((v: number) => {
     const e = clamp01(v);
     control.current.explode = e;
-    if (sliderRef.current) sliderRef.current.value = String(e * 100);
-    if (percentRef.current) percentRef.current.textContent = `${Math.round(e * 100)}%`;
     setLabel(stageLabel(e));
+    setAnnotationGroup(groupForExplode(e));
   }, []);
 
   useEffect(() => { if (matchMedia("(prefers-reduced-motion: reduce)").matches) setAuto(false); }, [setAuto]);
@@ -95,6 +93,7 @@ export function TransformerAssembly() {
 
   const part = selected ? partById[selected]! : null;
   const hovered = hover ? partById[hover.id]! : null;
+  const annotatedParts = annotationGroup === null ? [] : parts.filter((p) => p.group === annotationGroup);
 
   return (
     <main className="fixed inset-0 select-none overflow-hidden bg-background text-foreground">
@@ -140,11 +139,28 @@ export function TransformerAssembly() {
         </aside>
       )}
 
-      <div className="ui-wake pointer-events-none fixed bottom-[116px] left-[34px] text-[9px] tracking-[0.1em] text-muted-foreground opacity-70 max-[700px]:hidden">
-        Scroll to explode · Drag to rotate · Click a part to inspect · Esc to go back
-      </div>
+      {!part && annotationGroup !== null && (
+        <aside aria-live="polite" aria-label="Components revealed by the exploded view" className="ink-in pointer-events-none fixed bottom-[88px] left-[34px] z-10 max-w-[260px] border-l-2 border-accent bg-popover/95 px-3.5 py-3 text-popover-foreground max-[700px]:bottom-[72px] max-[700px]:left-[18px] max-[700px]:max-w-[205px]">
+          <div className="text-[9px] tracking-[0.14em] text-chip-muted">NOW REVEALING</div>
+          <h2 className="mt-0.5 font-serif text-lg leading-tight">{groups[annotationGroup]!.title}</h2>
+          <ul className="mt-2 space-y-2">
+            {annotatedParts.map((item) => (
+              <li key={item.id} className="text-[10px] leading-[1.55]">
+                <span className="font-medium text-primary">{item.name}</span>
+                <span className="block text-muted-foreground">{item.note}</span>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
 
-      <div data-ui className="ui-wake fixed bottom-[18px] left-1/2 z-10 w-[min(820px,94vw)] -translate-x-1/2 rounded-3xl border border-border bg-card/95 px-3.5 pb-3 pt-2.5 text-[10px] tracking-[0.04em] shadow-bar max-[700px]:bottom-2.5 max-[700px]:px-2.5 max-[700px]:pb-2 max-[700px]:pt-1.5">
+      {annotationGroup === null && (
+        <div className="ui-wake pointer-events-none fixed bottom-[116px] left-[34px] text-[9px] tracking-[0.1em] text-muted-foreground opacity-70 max-[700px]:hidden">
+          Scroll to explode · Drag to rotate · Click a part to inspect · Esc to go back
+        </div>
+      )}
+
+      <div data-ui className="ui-wake fixed bottom-[18px] left-1/2 z-10 w-fit max-w-[94vw] -translate-x-1/2 rounded-3xl border border-border bg-card/95 px-3.5 pb-3 pt-2.5 text-[10px] tracking-[0.04em] shadow-bar max-[700px]:bottom-2.5 max-[700px]:px-2.5 max-[700px]:pb-2 max-[700px]:pt-1.5">
         {matches.length > 0 && (
           <ul className="absolute bottom-full right-3 mb-2 w-56 overflow-hidden rounded-2xl border border-border bg-card py-1 shadow-bar">
             {matches.map((p) => (
@@ -159,10 +175,6 @@ export function TransformerAssembly() {
         <div className="flex min-h-8 items-center gap-2">
           <Pill on={auto} onClick={() => setAuto(!auto)} aria-pressed={auto}>{auto ? "Ⅱ Pause" : "▶ Play"}</Pill>
           <Pill onClick={home} title="Back to full machine">Machine</Pill>
-          <input ref={sliderRef} type="range" min={0} max={100} step={0.1} defaultValue={0} aria-label="Exploded-view progress"
-            onChange={(e) => { stop(); setExplode(+e.target.value / 100); }}
-            className="h-6 min-w-[50px] flex-1 cursor-ew-resize" />
-          <output ref={percentRef} className="w-8 tabular-nums text-chip-muted">0%</output>
           {videoUrl && <Pill onClick={() => { stop(); setVideo(true); }} className="max-[700px]:hidden">Film</Pill>}
           <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search parts…" aria-label="Search parts"
             onKeyDown={(e) => { if (e.key === "Enter" && matches[0]) { openPart(matches[0].id); setQuery(""); } }}
@@ -184,6 +196,16 @@ export function TransformerAssembly() {
       )}
     </main>
   );
+}
+
+/** Which assembly is being separated at a given point in the scroll-driven view. */
+function groupForExplode(explode: number): number | null {
+  if (explode <= 0.005) return null;
+  if (explode < 0.12) return 4;
+  if (explode < 0.35) return 3;
+  if (explode < 0.5) return 2;
+  if (explode < 0.8) return 1;
+  return 0;
 }
 
 function Loading() {
