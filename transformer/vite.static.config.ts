@@ -5,7 +5,7 @@ import tsconfigPaths from "vite-tsconfig-paths";
 
 /** A GitHub Pages build of the interactive study. */
 export default defineConfig({
-  base: "/nordic-transfer-studio/",
+  base: "/transformer/",
   plugins: [react(), tailwindcss(), tsconfigPaths()],
   build: {
     outDir: "dist",

@@ -1,7 +1,6 @@
-import { Suspense, lazy, useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Suspense, lazy, useCallback, useEffect, useRef, useState } from "react";
 import { autoplayStep, clamp01, groups, partById, parts, stageLabel } from "@/game/transformer/parts";
 import type { SceneControl } from "@/game/transformer/TransformerScene";
-import { videoUrl } from "./assembly-data";
 
 const TransformerScene = lazy(() => import("@/game/transformer/TransformerScene"));
 
@@ -13,8 +12,6 @@ export function TransformerAssembly() {
   const [group, setGroup] = useState<number | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [hover, setHover] = useState<{ id: string; x: number; y: number } | null>(null);
-  const [query, setQuery] = useState("");
-  const [video, setVideo] = useState(false);
 
   const setAuto = useCallback((v: boolean) => { control.current.auto = v; setAutoState(v); }, []);
   const stop = useCallback(() => setAuto(false), [setAuto]);
@@ -48,14 +45,13 @@ export function TransformerAssembly() {
 
   useEffect(() => {
     const onWheel = (e: WheelEvent) => {
-      if (video) return;
       if ((e.target as HTMLElement)?.closest?.("[data-ui]")) return;
       e.preventDefault(); stop();
       setExplode(control.current.explode + e.deltaY / 1600);
     };
     const onKey = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement)?.tagName === "INPUT") { if (e.key === "Escape") (e.target as HTMLElement).blur(); return; }
-      if (e.key === "Escape") { setSelected(null); setGroup(null); setVideo(false); }
+      if (e.key === "Escape") { setSelected(null); setGroup(null); }
       if (e.key === " ") { e.preventDefault(); setAuto(!control.current.auto); }
       if (e.key === "ArrowUp") { stop(); setExplode(control.current.explode + 0.02); }
       if (e.key === "ArrowDown") { stop(); setExplode(control.current.explode - 0.02); }
@@ -63,7 +59,7 @@ export function TransformerAssembly() {
     addEventListener("wheel", onWheel, { passive: false });
     addEventListener("keydown", onKey);
     return () => { removeEventListener("wheel", onWheel); removeEventListener("keydown", onKey); };
-  }, [setExplode, setAuto, stop, video]);
+  }, [setExplode, setAuto, stop]);
 
   const openPart = useCallback((id: string) => {
     const p = partById[id]!;
@@ -74,22 +70,10 @@ export function TransformerAssembly() {
     const i = parts.findIndex((p) => p.id === selected);
     openPart(parts[(i + d + parts.length) % parts.length]!.id);
   };
-  const chooseGroup = (g: number | null) => {
-    stop(); setSelected(null); setGroup(g);
-    if (g !== null) setExplode(groups[g]!.focus);
-  };
-  const home = () => { stop(); setSelected(null); setGroup(null); setExplode(0); };
-
   const onHover = useCallback((id: string | null, x: number, y: number) => {
     setHover(id ? { id, x, y } : null);
     document.body.style.cursor = id ? "pointer" : "";
   }, []);
-
-  const matches = useMemo(() => {
-    const q = query.trim().toLowerCase();
-    if (!q) return [];
-    return parts.filter((p) => (p.name + " " + p.meta).toLowerCase().includes(q)).slice(0, 6);
-  }, [query]);
 
   const part = selected ? partById[selected]! : null;
   const hovered = hover ? partById[hover.id]! : null;
@@ -160,40 +144,6 @@ export function TransformerAssembly() {
         </div>
       )}
 
-      <div data-ui className="ui-wake fixed bottom-[18px] left-1/2 z-10 w-fit max-w-[94vw] -translate-x-1/2 rounded-3xl border border-border bg-card/95 px-3.5 pb-3 pt-2.5 text-[10px] tracking-[0.04em] shadow-bar max-[700px]:bottom-2.5 max-[700px]:px-2.5 max-[700px]:pb-2 max-[700px]:pt-1.5">
-        {matches.length > 0 && (
-          <ul className="absolute bottom-full right-3 mb-2 w-56 overflow-hidden rounded-2xl border border-border bg-card py-1 shadow-bar">
-            {matches.map((p) => (
-              <li key={p.id}>
-                <button onClick={() => { openPart(p.id); setQuery(""); }} className="flex w-full justify-between px-3.5 py-2 text-left hover:bg-chip-hover">
-                  <span className="text-card-foreground">{p.name}</span><span className="text-[9px] text-chip-muted">{groups[p.group]!.title}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        )}
-        <div className="flex min-h-8 items-center gap-2">
-          <Pill on={auto} onClick={() => setAuto(!auto)} aria-pressed={auto}>{auto ? "Ⅱ Pause" : "▶ Play"}</Pill>
-          <Pill onClick={home} title="Back to full machine">Machine</Pill>
-          {videoUrl && <Pill onClick={() => { stop(); setVideo(true); }} className="max-[700px]:hidden">Film</Pill>}
-          <input type="search" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="Search parts…" aria-label="Search parts"
-            onKeyDown={(e) => { if (e.key === "Enter" && matches[0]) { openPart(matches[0].id); setQuery(""); } }}
-            className="min-h-8 w-[124px] rounded-full border border-input bg-secondary px-[11px] py-1.5 text-secondary-foreground outline-none placeholder:text-chip-muted focus:border-accent focus:bg-card max-[700px]:w-[76px]" />
-        </div>
-        <div className="mt-1.5 flex flex-wrap items-center gap-1.5 border-t border-border pt-2 max-[700px]:gap-0.5">
-          <Chip on={group === null} onClick={() => chooseGroup(null)}>All</Chip>
-          {groups.map((g, i) => <Chip key={g.title} on={group === i} onClick={() => chooseGroup(i)}>{g.title}</Chip>)}
-        </div>
-      </div>
-
-      {video && videoUrl && (
-        <div role="dialog" aria-modal aria-label="Assembly film" onClick={() => setVideo(false)} className="fixed inset-0 z-50 grid place-items-center bg-background/90 p-6 backdrop-blur-sm">
-          <div className="w-full max-w-5xl" onClick={(e) => e.stopPropagation()}>
-            <video src={videoUrl} controls autoPlay playsInline className="w-full rounded-3xl bg-stone shadow-bar" />
-            <button onClick={() => setVideo(false)} className="mt-3 text-[11px] tracking-[0.1em] text-primary">← Back to the machine</button>
-          </div>
-        </div>
-      )}
     </main>
   );
 }
@@ -212,16 +162,3 @@ function Loading() {
   return <div className="grid h-full place-items-center text-[11px] uppercase tracking-[0.2em] text-muted-foreground">Loading machine…</div>;
 }
 
-function Pill({ on, className = "", ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { on?: boolean }) {
-  return (
-    <button {...props}
-      className={`min-h-8 whitespace-nowrap rounded-full px-3 py-1.5 transition-[background,color,transform] duration-200 active:scale-[0.97] ${on ? "bg-chip text-chip-foreground" : "text-foreground hover:bg-chip-hover hover:text-chip-foreground"} ${className}`} />
-  );
-}
-
-function Chip({ on, ...props }: React.ButtonHTMLAttributes<HTMLButtonElement> & { on: boolean }) {
-  return (
-    <button aria-pressed={on} {...props}
-      className={`min-h-7 whitespace-nowrap rounded-full px-2.5 py-1 transition-colors duration-200 max-[700px]:text-[9px] ${on ? "bg-chip text-chip-foreground" : "text-chip-muted hover:bg-chip-hover hover:text-chip-foreground"}`} />
-  );
-}
