@@ -34,12 +34,12 @@ jobs:
         with:
           bun-version: 1.2.22
       - name: Build the transformer studio
-        working-directory: nordic-transfer-studio
+        working-directory: transformer
         run: |
           bun install --frozen-lockfile
           bun run build:static
       - name: Add the studio to the published site
-        run: cp -R nordic-transfer-studio/dist _site/nordic-transfer-studio
+        run: cp -R transformer/dist _site/transformer
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./_site
