@@ -25,6 +25,8 @@ jobs:
           source: ./
           destination: ./_site
           future: true
+      - name: Make Jekyll output writable
+        run: sudo chown -R "$USER:$USER" _site
       - uses: actions/setup-node@v4
         with:
           node-version: 22
