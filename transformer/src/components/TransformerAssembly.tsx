@@ -1,19 +1,18 @@
 import { Suspense, lazy, useCallback, useEffect, useRef, useState } from "react";
-import { autoplayStep, clamp01, groups, partById, parts, stageLabel } from "@/game/transformer/parts";
+import { clamp01, groups, partById, parts, stageLabel } from "@/game/transformer/parts";
 import type { SceneControl } from "@/game/transformer/TransformerScene";
 
 const TransformerScene = lazy(() => import("@/game/transformer/TransformerScene"));
 
 export function TransformerAssembly() {
   const control = useRef<SceneControl>({ explode: 0, auto: true });
-  const [auto, setAutoState] = useState(true);
   const [label, setLabel] = useState("Assembled");
   const [annotationGroup, setAnnotationGroup] = useState<number | null>(null);
   const [group, setGroup] = useState<number | null>(null);
   const [selected, setSelected] = useState<string | null>(null);
   const [hover, setHover] = useState<{ id: string; x: number; y: number } | null>(null);
 
-  const setAuto = useCallback((v: boolean) => { control.current.auto = v; setAutoState(v); }, []);
+  const setAuto = useCallback((v: boolean) => { control.current.auto = v; }, []);
   const stop = useCallback(() => setAuto(false), [setAuto]);
 
   const setExplode = useCallback((v: number) => {
@@ -25,41 +24,34 @@ export function TransformerAssembly() {
 
   useEffect(() => { if (matchMedia("(prefers-reduced-motion: reduce)").matches) setAuto(false); }, [setAuto]);
 
-  // autoplay: explode → hold → assemble → hold …
+  // The machine moves with the document. This keeps the browser's ordinary,
+  // accessible scroll behaviour while the render remains in view.
   useEffect(() => {
-    if (!auto) return;
-    let raf = 0, last = performance.now(), dir: 1 | -1 = control.current.explode >= 1 ? -1 : 1, hold = 1;
-    const tick = (now: number) => {
-      const dt = Math.min(0.05, (now - last) / 1000); last = now;
-      if (hold > 0) hold -= dt;
-      else {
-        const s = autoplayStep(control.current.explode, dir, dt);
-        dir = s.dir; if (s.turned) hold = 1.6;
-        setExplode(s.explode);
-      }
-      raf = requestAnimationFrame(tick);
+    let raf = 0;
+    const syncToScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const range = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+        setExplode(scrollY / range);
+      });
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
-  }, [auto, setExplode]);
+    syncToScroll();
+    addEventListener("scroll", syncToScroll, { passive: true });
+    addEventListener("resize", syncToScroll);
+    return () => { cancelAnimationFrame(raf); removeEventListener("scroll", syncToScroll); removeEventListener("resize", syncToScroll); };
+  }, [setExplode]);
 
   useEffect(() => {
-    const onWheel = (e: WheelEvent) => {
-      if ((e.target as HTMLElement)?.closest?.("[data-ui]")) return;
-      e.preventDefault(); stop();
-      setExplode(control.current.explode + e.deltaY / 1600);
-    };
     const onKey = (e: KeyboardEvent) => {
       if ((e.target as HTMLElement)?.tagName === "INPUT") { if (e.key === "Escape") (e.target as HTMLElement).blur(); return; }
       if (e.key === "Escape") { setSelected(null); setGroup(null); }
-      if (e.key === " ") { e.preventDefault(); setAuto(!control.current.auto); }
-      if (e.key === "ArrowUp") { stop(); setExplode(control.current.explode + 0.02); }
-      if (e.key === "ArrowDown") { stop(); setExplode(control.current.explode - 0.02); }
+      if (e.key === " ") { e.preventDefault(); window.scrollBy({ top: innerHeight * 0.7, behavior: "smooth" }); }
+      if (e.key === "ArrowUp") { e.preventDefault(); window.scrollBy({ top: -120, behavior: "smooth" }); }
+      if (e.key === "ArrowDown") { e.preventDefault(); window.scrollBy({ top: 120, behavior: "smooth" }); }
     };
-    addEventListener("wheel", onWheel, { passive: false });
     addEventListener("keydown", onKey);
-    return () => { removeEventListener("wheel", onWheel); removeEventListener("keydown", onKey); };
-  }, [setExplode, setAuto, stop]);
+    return () => { removeEventListener("keydown", onKey); };
+  }, []);
 
   const openPart = useCallback((id: string) => {
     const p = partById[id]!;
@@ -80,14 +72,17 @@ export function TransformerAssembly() {
   const annotatedParts = annotationGroup === null ? [] : parts.filter((p) => p.group === annotationGroup);
 
   return (
-    <main className="fixed inset-0 select-none overflow-hidden bg-background text-foreground">
+    <main className="relative h-[520vh] select-none bg-background text-foreground max-[700px]:h-[440vh]">
       <h1 className="sr-only">Transformer Assembly — an interactive 3D mechanical study of a three-phase transformer</h1>
 
-      <div className="absolute inset-0 cursor-grab touch-none active:cursor-grabbing" aria-label="3D transformer model" role="img">
+      <div className="sticky top-0 h-svh overflow-hidden">
+      <div className="absolute inset-0 cursor-grab touch-pan-y active:cursor-grabbing" aria-label="3D transformer model" role="img">
         <Suspense fallback={<Loading />}>
           <TransformerScene control={control} selected={selected} group={group} onHover={onHover} onSelect={openPart} onInteract={stop} />
         </Suspense>
       </div>
+
+      <ProcessRail activeGroup={annotationGroup} label={label} />
 
       {hovered && hover && !part && (
         <div className="pointer-events-none fixed z-20 max-w-[min(270px,80vw)] border-l-2 border-accent bg-popover/95 px-3.5 py-2.5 text-xs leading-[1.7] text-popover-foreground"
@@ -97,7 +92,7 @@ export function TransformerAssembly() {
         </div>
       )}
 
-      <header className="ui-wake pointer-events-none fixed inset-x-[34px] top-[30px] flex justify-between text-[10px] uppercase leading-[1.9] tracking-[0.15em] max-[700px]:inset-x-5 max-[700px]:top-5">
+      <header className="ui-wake pointer-events-none fixed inset-x-[34px] top-[76px] flex justify-between text-[10px] uppercase leading-[1.9] tracking-[0.15em] max-[700px]:inset-x-5 max-[700px]:top-[58px]">
         <div>
           <span>Transformer / Mechanical Studies</span>
           <div className="text-xs tracking-[0.24em] text-title">A flux, a current.</div>
@@ -124,14 +119,14 @@ export function TransformerAssembly() {
       )}
 
       {!part && annotationGroup !== null && (
-        <aside aria-live="polite" aria-label="Components revealed by the exploded view" className="ink-in pointer-events-none fixed bottom-[88px] left-[34px] z-10 max-w-[260px] border-l-2 border-accent bg-popover/95 px-3.5 py-3 text-popover-foreground max-[700px]:bottom-[72px] max-[700px]:left-[18px] max-[700px]:max-w-[205px]">
-          <div className="text-[9px] tracking-[0.14em] text-chip-muted">NOW REVEALING</div>
-          <h2 className="mt-0.5 font-serif text-lg leading-tight">{groups[annotationGroup]!.title}</h2>
-          <ul className="mt-2 space-y-2">
+        <aside aria-live="polite" aria-label="Components revealed by the exploded view" className="technical-callouts ink-in pointer-events-none fixed bottom-[72px] right-[34px] z-10 w-[min(330px,33vw)] text-popover-foreground max-[700px]:bottom-[54px] max-[700px]:right-[18px] max-[700px]:w-[min(260px,65vw)]">
+          <div className="technical-kicker"><span>0{annotationGroup + 1}</span> {groups[annotationGroup]!.title}</div>
+          <h2 className="mt-2 font-serif text-xl leading-tight">Component annotations</h2>
+          <ul className="mt-3 space-y-2.5">
             {annotatedParts.map((item) => (
-              <li key={item.id} className="text-[10px] leading-[1.55]">
-                <span className="font-medium text-primary">{item.name}</span>
-                <span className="block text-muted-foreground">{item.note}</span>
+              <li key={item.id} className="technical-item text-[10px] leading-[1.5]">
+                <span className="technical-index">{item.meta.split(" · ")[1]}</span>
+                <span><strong>{item.name}</strong><span className="block text-muted-foreground">{item.note}</span></span>
               </li>
             ))}
           </ul>
@@ -140,11 +135,22 @@ export function TransformerAssembly() {
 
       {annotationGroup === null && (
         <div className="ui-wake pointer-events-none fixed bottom-[116px] left-[34px] text-[9px] tracking-[0.1em] text-muted-foreground opacity-70 max-[700px]:hidden">
-          Scroll to explode · Drag to rotate · Click a part to inspect · Esc to go back
+          Scroll to disassemble · Drag to rotate · Click a part to inspect · Esc to go back
         </div>
       )}
-
+      </div>
     </main>
+  );
+}
+
+function ProcessRail({ activeGroup, label }: { activeGroup: number | null; label: string }) {
+  const steps = ["Terminals", "Tank & cooling", "Active part", "Windings", "Core"];
+  const revealed = activeGroup === null ? -1 : 4 - activeGroup;
+  return (
+    <nav aria-label="Assembly sequence" className="ui-wake process-rail fixed left-[34px] right-[34px] top-[30px] z-10 flex items-center gap-2 text-[9px] uppercase tracking-[0.13em] max-[700px]:left-[18px] max-[700px]:right-[18px] max-[700px]:top-[18px]">
+      {steps.map((step, i) => <div key={step} className={`process-step ${i <= revealed ? "is-active" : ""}`}><span>{String(i + 1).padStart(2, "0")}</span><b>{step}</b></div>)}
+      <span className="ml-auto hidden text-chip-muted min-[850px]:inline">{label} →</span>
+    </nav>
   );
 }
 
