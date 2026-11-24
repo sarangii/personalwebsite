@@ -28,11 +28,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.2.22
       - name: Build the transformer studio
         working-directory: nordic-transfer-studio
         run: |
-          npm install --no-audit --no-fund --package-lock=false
-          npm run build:static
+          bun install --frozen-lockfile
+          bun run build:static
       - name: Add the studio to the published site
         run: cp -R nordic-transfer-studio/dist _site/nordic-transfer-studio
       - uses: actions/upload-pages-artifact@v3
