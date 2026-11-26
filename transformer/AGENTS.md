@@ -1,2 +1,0 @@
-- The transformer is a procedural React Three Fiber model in src/game/transformer: parts.ts holds pure part data and explode rules (tested), TransformerScene.tsx draws them; the scene is lazy-loaded behind ClientOnly so three.js never runs during SSR.
-- UI drives the scene through a mutable control ref (explode target, autoplay) so per-frame animation never re-renders React.
