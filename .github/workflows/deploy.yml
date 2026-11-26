@@ -37,7 +37,7 @@ jobs:
         working-directory: transformer
         run: |
           bun install --frozen-lockfile
-          bun run build:static
+          bun run build
       - name: Add the studio to the published site
         run: cp -R transformer/dist _site/transformer
       - uses: actions/upload-pages-artifact@v3
