@@ -4,5 +4,6 @@ sitemap: false
 ---
 User-agent: *
 Allow: /
+Disallow: /bio_data.html
 
 Sitemap: {{ '/sitemap.xml' | absolute_url }}

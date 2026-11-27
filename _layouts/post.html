@@ -1,6 +1,9 @@
 ---
 layout: default
 ---
+{% assign words = content | number_of_words %}
+{% assign reading_minutes = words | plus: 199 | divided_by: 200 %}
+{% if reading_minutes < 1 %}{% assign reading_minutes = 1 %}{% endif %}
 <a class="back-link" href="{{ '/' | relative_url }}#writing">← The reading room</a>
 <article class="post">
     <header class="post-header cover-{{ page.cover_art | default: 'circuits' }}">
@@ -8,7 +11,7 @@ layout: default
         <h1>{{ page.title }}</h1>
         {% if page.description %}<p class="post-deck">{{ page.description }}</p>{% endif %}
         <p class="byline">Aditya Sarangi</p>
-        <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} · Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %}</p>
+        <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} · Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %} · {{ reading_minutes }} min read</p>
         {% assign cover = page.cover_art | default: 'circuits' %}
         <img class="post-header-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="350" alt="">
     </header>
@@ -18,7 +21,15 @@ layout: default
     </div>
 
     <footer class="post-footer">
-        <a href="{{ '/' | relative_url }}#writing">← All writing</a>
-        <a href="mailto:aditya.sarangi65@gmail.com?subject=Reply to: {{ page.title | url_encode }}">Reply by email</a>
+        <div class="post-footer-links">
+            <a href="{{ '/' | relative_url }}#writing">← All writing</a>
+            <a href="mailto:aditya.sarangi65@gmail.com?subject=Reply to: {{ page.title | url_encode }}">Reply by email</a>
+        </div>
+        {% if page.previous or page.next %}
+        <nav class="post-nav" aria-label="More essays">
+            {% if page.previous %}<a class="post-nav-prev" href="{{ page.previous.url | relative_url }}"><span>Previous</span>{{ page.previous.title }}</a>{% endif %}
+            {% if page.next %}<a class="post-nav-next" href="{{ page.next.url | relative_url }}"><span>Next</span>{{ page.next.title }}</a>{% endif %}
+        </nav>
+        {% endif %}
     </footer>
 </article>

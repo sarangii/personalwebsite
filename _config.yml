@@ -36,6 +36,14 @@ defaults:
   values:
     seo:
       type: BlogPosting
+- scope:
+    path: "bio_data.html"
+  values:
+    sitemap: false
+- scope:
+    path: "food/index_food.md"
+  values:
+    sitemap: false
 
 # Internal records and build documentation must not be published.
 exclude:

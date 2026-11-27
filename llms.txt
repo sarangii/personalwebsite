@@ -22,6 +22,7 @@ Publication dates are shown on each article. Use the linked articles as the prim
 - [Rabbit holes]({{ '/rabbit-holes.html' | absolute_url }}): Ideas and observations.
 - [Music]({{ '/music.html' | absolute_url }}): Listening notes.
 - [Collections]({{ '/collections.html' | absolute_url }}): Links, quotes, books, and other things worth keeping.
+- [Transformer studio]({{ '/transformer/' | absolute_url }}): A 12-month visual manufacturing timeline of a three-phase power transformer.
 
 ## Discovery
 
