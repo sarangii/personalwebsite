@@ -1,0 +1,77 @@
+{% case include.symbol %}
+{% when 'waves' %}
+<svg class="subsystem-svg subsystem-waves" viewBox="0 0 120 72" width="120" height="72" aria-hidden="true" focusable="false">
+    <rect x="2" y="2" width="116" height="68" fill="none" stroke="var(--rule-m3)" stroke-width="1"/>
+    <path d="M2 18H118M2 36H118M2 54H118" stroke="var(--rule-m1)" stroke-width="1" fill="none"/>
+    <rect x="14" y="42" width="6" height="22" fill="var(--cobalt)" opacity="0.5"/>
+    <rect x="24" y="30" width="6" height="34" fill="var(--cobalt)" opacity="0.72"/>
+    <rect x="34" y="20" width="6" height="44" fill="var(--copper)" opacity="0.88"/>
+    <rect x="44" y="26" width="6" height="38" fill="var(--cobalt)" opacity="0.65"/>
+    <rect x="54" y="14" width="6" height="50" fill="var(--copper)"/>
+    <rect x="64" y="24" width="6" height="40" fill="var(--cobalt)" opacity="0.82"/>
+    <rect x="74" y="18" width="6" height="46" fill="var(--copper)" opacity="0.82"/>
+    <rect x="84" y="32" width="6" height="32" fill="var(--cobalt)" opacity="0.62"/>
+    <rect x="94" y="22" width="6" height="42" fill="var(--copper)" opacity="0.72"/>
+    <rect x="104" y="38" width="6" height="26" fill="var(--cobalt)" opacity="0.48"/>
+    <path d="M8 46H27V24H47V12H67V26H87V16H112" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+    <rect x="25" y="22" width="4" height="4" fill="var(--copper)"/>
+    <rect x="45" y="10" width="4" height="4" fill="var(--copper)"/>
+    <rect x="65" y="24" width="4" height="4" fill="var(--copper)"/>
+    <rect x="85" y="14" width="4" height="4" fill="var(--copper)"/>
+</svg>
+{% when 'bars' %}
+<svg class="subsystem-svg subsystem-bars" viewBox="0 0 120 72" width="120" height="72" aria-hidden="true" focusable="false">
+    <rect x="8" y="6" width="104" height="60" fill="none" stroke="var(--rule-m3)" stroke-width="1"/>
+    <rect x="8" y="34" width="104" height="4" fill="var(--emerald)" opacity="0.85"/>
+    <line x1="12" y1="36" x2="108" y2="36" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="14" y="11" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="26" y="11" width="9" height="19" fill="var(--emerald)" opacity="0.34" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="38" y="11" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="50" y="11" width="9" height="19" fill="var(--emerald)" opacity="0.65" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="62" y="11" width="9" height="19" fill="var(--emerald)" opacity="0.65" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="74" y="11" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="86" y="11" width="9" height="19" fill="var(--emerald)" opacity="0.34" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="98" y="11" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="14" y="42" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="26" y="42" width="9" height="19" fill="var(--emerald)" opacity="0.34" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="38" y="42" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="50" y="42" width="9" height="19" fill="var(--emerald)" opacity="0.65" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="62" y="42" width="9" height="19" fill="var(--emerald)" opacity="0.65" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="74" y="42" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="86" y="42" width="9" height="19" fill="var(--emerald)" opacity="0.34" stroke="var(--emerald)" stroke-width="1"/>
+    <rect x="98" y="42" width="9" height="19" fill="none" stroke="var(--ink)" stroke-width="1"/>
+    <rect x="58" y="34" width="4" height="4" fill="var(--copper)"/>
+</svg>
+{% when 'coils' %}
+<svg class="subsystem-svg subsystem-coils" viewBox="0 0 120 72" width="120" height="72" aria-hidden="true" focusable="false">
+    <rect x="6" y="8" width="108" height="56" fill="none" stroke="var(--rule-m3)" stroke-width="1"/>
+    <path d="M18 14H102V22H92V50H102V58H18V50H28V22H18Z" fill="none" stroke="var(--ink)" stroke-width="1.3"/>
+    <rect x="21" y="22" width="10" height="28" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+    <rect x="55" y="22" width="10" height="28" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+    <rect x="89" y="22" width="10" height="28" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+    <rect x="17" y="25" width="18" height="22" fill="none" stroke="var(--cobalt)" stroke-width="1.2"/>
+    <rect x="51" y="25" width="18" height="22" fill="none" stroke="var(--cobalt)" stroke-width="1.2"/>
+    <rect x="85" y="25" width="18" height="22" fill="none" stroke="var(--cobalt)" stroke-width="1.2"/>
+    <rect x="13" y="28" width="26" height="16" fill="none" stroke="var(--copper)" stroke-width="1.4"/>
+    <rect x="47" y="28" width="26" height="16" fill="none" stroke="var(--copper)" stroke-width="1.4"/>
+    <rect x="81" y="28" width="26" height="16" fill="none" stroke="var(--copper)" stroke-width="1.4"/>
+    <path d="M26 8V28M60 8V28M94 8V28" stroke="var(--copper)" stroke-width="1.4" fill="none"/>
+    <rect x="24" y="6" width="4" height="4" fill="var(--copper)"/>
+    <rect x="58" y="6" width="4" height="4" fill="var(--copper)"/>
+    <rect x="92" y="6" width="4" height="4" fill="var(--copper)"/>
+</svg>
+{% else %}
+<svg class="subsystem-svg subsystem-rings" viewBox="0 0 120 72" width="120" height="72" aria-hidden="true" focusable="false">
+    <rect x="8" y="10" width="46" height="38" fill="var(--copper-wash)" stroke="var(--ink)" stroke-width="1.2"/>
+    <path d="M8 24H54M30 10V48" stroke="var(--rule-m3)" stroke-width="1" fill="none"/>
+    <rect x="66" y="24" width="46" height="38" fill="none" stroke="var(--ink)" stroke-width="1.2"/>
+    <path d="M66 42H112M88 24V62" stroke="var(--rule-m3)" stroke-width="1" fill="none"/>
+    <rect x="40" y="20" width="40" height="32" fill="none" stroke="var(--copper)" stroke-width="1.3"/>
+    <path d="M2 29H8M2 37H8M112 35H118M112 43H118M30 4V10M88 62V68" stroke="var(--copper)" stroke-width="1.4" fill="none"/>
+    <path d="M30 24H60V48H88" fill="none" stroke="var(--copper)" stroke-width="1.5"/>
+    <rect x="57" y="33" width="6" height="6" fill="var(--copper)"/>
+    <rect x="59" y="35" width="2" height="2" fill="var(--ink)"/>
+    <rect x="28" y="22" width="4" height="4" fill="var(--ink)"/>
+    <rect x="86" y="46" width="4" height="4" fill="var(--ink)"/>
+</svg>
+{% endcase %}

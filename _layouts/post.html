@@ -4,16 +4,22 @@ layout: default
 {% assign words = content | number_of_words %}
 {% assign reading_minutes = words | plus: 199 | divided_by: 200 %}
 {% if reading_minutes < 1 %}{% assign reading_minutes = 1 %}{% endif %}
+{% assign cover = page.cover_art | default: 'circuits' %}
 <a class="back-link" href="{{ '/' | relative_url }}#writing">← The reading room</a>
 <article class="post">
-    <header class="post-header cover-{{ page.cover_art | default: 'circuits' }}">
-        <p class="post-category">{{ page.category | replace: '-', ' ' }}</p>
-        <h1>{{ page.title }}</h1>
-        {% if page.description %}<p class="post-deck">{{ page.description }}</p>{% endif %}
-        <p class="byline">Aditya Sarangi</p>
-        <p class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} · Updated <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %} · {{ reading_minutes }} min read</p>
-        {% assign cover = page.cover_art | default: 'circuits' %}
-        <img class="post-header-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="350" alt="">
+    <header class="post-header cover-{{ cover }}">
+        <div class="post-spec-bar">
+            <span class="post-category">{{ page.category | replace: '-', ' ' }}</span>
+            <span class="post-date"><time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: "%B %-d, %Y" }}</time>{% if page.updated %} · UPDATED <time datetime="{{ page.updated | date_to_xmlschema }}">{{ page.updated | date: "%B %-d, %Y" }}</time>{% endif %} · {{ reading_minutes }} MIN READ</span>
+        </div>
+        <div class="post-header-main">
+            <h1>{{ page.title }}</h1>
+            {% if page.description %}<p class="post-deck">{{ page.description }}</p>{% endif %}
+            <p class="byline">Aditya Sarangi</p>
+        </div>
+        <div class="post-header-plate optical-well">
+            <img class="post-header-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="320" alt="">
+        </div>
     </header>
 
     <div class="post-body">
@@ -22,8 +28,8 @@ layout: default
 
     <footer class="post-footer">
         <div class="post-footer-links">
-            <a href="{{ '/' | relative_url }}#writing">← All writing</a>
-            <a href="mailto:aditya.sarangi65@gmail.com?subject=Reply to: {{ page.title | url_encode }}">Reply by email</a>
+            <a class="pad-link" href="{{ '/' | relative_url }}#writing">← All writing</a>
+            <a class="pad-link" href="mailto:aditya.sarangi65@gmail.com?subject=Reply to: {{ page.title | url_encode }}">Reply by email</a>
         </div>
         {% if page.previous or page.next %}
         <nav class="post-nav" aria-label="More essays">

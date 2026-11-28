@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v=20261128">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%233c4d84%22 stroke=%22%23f3ece1%22 stroke-width=%224%22/><g transform=%22rotate(-90 50 50)%22><text x=%2250%22 y=%2274%22 text-anchor=%22middle%22 font-size=%2272%22 fill=%22%23f3ece1%22>%E0%AC%86</text></g></svg>">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect x=%224%22 y=%224%22 width=%2292%22 height=%2292%22 rx=%226%22 fill=%22%230E1117%22 stroke=%22%23E29D48%22 stroke-width=%226%22/><path d=%22M14 14h10M14 14v10M86 14h-10M86 14v10M14 86h10M14 86v-10M86 86h-10M86 86v-10%22 stroke=%22%23ECEFF4%22 stroke-width=%223%22 fill=%22none%22/><text x=%2250%22 y=%2271%22 text-anchor=%22middle%22 font-size=%2264%22 fill=%22%23ECEFF4%22>%E0%AC%86</text></svg>">
 
     {% seo %}
     {% feed_meta %}
@@ -18,18 +18,19 @@
         (function () {
             var savedTheme;
             try { savedTheme = localStorage.getItem('theme'); } catch (error) {}
-            var prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-            var theme = (savedTheme === 'dark' || savedTheme === 'light') ? savedTheme : (prefersDark ? 'dark' : 'light');
+            var theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
             document.documentElement.dataset.theme = theme;
         }());
     </script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <div class="plate-frame">
-        <div class="plate-inner">
+    <div class="die-frame">
+        <div class="die-inner">
+            <span class="die-fiducial die-fiducial-tr" aria-hidden="true"></span>
+            <span class="die-fiducial die-fiducial-bl" aria-hidden="true"></span>
             <header class="site-header">
-                <a href="{{ '/' | relative_url }}" class="site-name" aria-label="Aditya Sarangi — home"><span class="publisher-mark" aria-hidden="true">a<span>s</span></span><span>Aditya Sarangi<small>A personal journal</small></span></a>
+                <a href="{{ '/' | relative_url }}" class="site-name" aria-label="Aditya Sarangi — home"><span class="die-mark" aria-hidden="true">AS</span><span>Aditya Sarangi<small>A personal journal</small></span></a>
                 <div class="navigation-bar">
                     <nav aria-label="Main navigation">
                         <a href="{{ '/' | relative_url }}#writing">Writing</a>
@@ -39,7 +40,7 @@
                         <a href="{{ '/transformer/' | relative_url }}">Studio</a>
                         <a href="{{ '/' | relative_url }}#about">About</a>
                     </nav>
-                    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-label">Light</span> <span aria-hidden="true">◐</span></button>
+                    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to Quartz Photomask light mode"><span class="polarity-pip" aria-hidden="true"></span><span class="theme-toggle-label">DIE // DARK</span></button>
                 </div>
             </header>
             <main class="content" id="main">
@@ -47,14 +48,14 @@
             </main>
             <footer class="site-footer">
                 <a class="footer-name" href="{{ '/' | relative_url }}">Aditya Sarangi</a>
-                <p>End of this plate. Beginning of another thought.</p>
+                <p>End of trace. Beginning of another inquiry.</p>
                 <nav aria-label="Social links">
                     <a href="{{ '/feed.xml' | relative_url }}">RSS / Atom</a>
                     <a href="mailto:aditya.sarangi65@gmail.com">Email ↗</a>
                     <a href="https://x.com/AdityaSara45596">Twitter ↗</a>
                     <a href="https://www.linkedin.com/in/sarangii/">LinkedIn ↗</a>
                 </nav>
-                <span class="copyright">© {{ site.time | date: '%Y' }} Aditya Sarangi · Plate 1 / ∞</span>
+                <span class="copyright">© {{ site.time | date: '%Y' }} Aditya Sarangi · Die Rev. 01 // ∞</span>
             </footer>
         </div>
     </div>
@@ -62,29 +63,52 @@
     <script>
         (function () {
             var toggle = document.querySelector('.theme-toggle');
-            if (!toggle) return;
-
-            function updateToggle() {
-                var isDark = document.documentElement.dataset.theme === 'dark';
-                toggle.setAttribute('aria-pressed', String(isDark));
-                toggle.setAttribute('aria-label', isDark ? 'Switch to light mode' : 'Switch to dark mode');
-                toggle.classList.toggle('is-on', isDark);
-                toggle.querySelector('.theme-toggle-label').textContent = isDark ? 'Dark' : 'Light';
+            if (toggle) {
+                var syncToggle = function () {
+                    var isLight = document.documentElement.dataset.theme === 'light';
+                    toggle.setAttribute('aria-pressed', String(isLight));
+                    toggle.setAttribute('aria-label', isLight ? 'Switch to Silicon Die dark mode' : 'Switch to Quartz Photomask light mode');
+                    toggle.classList.toggle('is-on', isLight);
+                    toggle.querySelector('.theme-toggle-label').textContent = isLight ? 'MASK // LIGHT' : 'DIE // DARK';
+                };
+                toggle.addEventListener('click', function () {
+                    var next = document.documentElement.dataset.theme === 'light' ? 'dark' : 'light';
+                    document.documentElement.dataset.theme = next;
+                    try { localStorage.setItem('theme', next); } catch (e) {}
+                    syncToggle();
+                });
+                syncToggle();
             }
-
-            toggle.addEventListener('click', function () {
-                var isDark = document.documentElement.dataset.theme === 'dark';
-                if (isDark) {
-                    document.documentElement.dataset.theme = 'light';
-                    try { localStorage.setItem('theme', 'light'); } catch (error) {}
-                } else {
-                    document.documentElement.dataset.theme = 'dark';
-                    try { localStorage.setItem('theme', 'dark'); } catch (error) {}
-                }
-                updateToggle();
+            var spec = document.querySelector('.hero-specimen');
+            if (!spec) return;
+            var readout = spec.querySelector('.specimen-readout');
+            var btns = spec.querySelectorAll('.specimen-controls button[data-zone]');
+            var zones = spec.querySelectorAll('.die-zone');
+            var specs = {
+                all: 'FULL DIE // 1997 P55C · MANHATTAN ROUTING & BILATERAL SRAM',
+                l1d: 'L1-D CACHE // 16 KB 4-WAY SET-ASSOCIATIVE · 6T BITCELL ARRAYS',
+                l1i: 'L1-I CACHE // 16 KB CODE ARRAY · BILATERAL SENSE AMPLIFIERS',
+                tag: 'BTB / TAG MACRO // UNOBSTRUCTED BRANCH & CACHE DIRECTORY',
+                core: 'U/V & MMX CORE // DUAL PIPELINES & 57-OP SIMD UNDER M4 RAILS',
+                io: 'I/O & ESD RING // PERIMETER WIRE-BOND PADS & SPLIT VCC2/VCC3'
+            };
+            var locked = 'all';
+            var show = function (z) {
+                readout.textContent = specs[z] || specs.all;
+                zones.forEach(function (el) { el.classList.toggle('is-active', el.dataset.zone === z); });
+                btns.forEach(function (b) { b.setAttribute('aria-pressed', String(b.dataset.zone === z)); });
+            };
+            btns.forEach(function (b) {
+                b.addEventListener('click', function () { locked = b.dataset.zone; show(locked); });
             });
-
-            updateToggle();
+            zones.forEach(function (el) {
+                var z = el.dataset.zone;
+                el.addEventListener('mouseenter', function () { show(z); });
+                el.addEventListener('focus', function () { show(z); });
+                el.addEventListener('mouseleave', function () { show(locked); });
+                el.addEventListener('blur', function () { show(locked); });
+                el.addEventListener('click', function () { locked = locked === z ? 'all' : z; show(locked); });
+            });
         }());
     </script>
 </body>

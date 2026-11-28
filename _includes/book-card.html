@@ -6,11 +6,20 @@
 {% assign cover = include.post.cover_art | default: 'circuits' %}
 <article class="book-item">
     <a class="book-cover cover-{{ cover }}" href="{{ include.post.url | relative_url }}">
-        <div class="book-topline"><span>{{ include.post.category | replace: '-', ' ' }}</span><span>Fig. {% if post_number < 10 %}0{% endif %}{{ post_number }}</span></div>
-        <h3>{{ include.post.title }}</h3>
-        <p class="cover-author">Aditya Sarangi</p>
-        <img class="cover-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="350" alt="" loading="lazy">
-        <span class="cover-bottom"><span>Plate No. {% if post_number < 10 %}0{% endif %}{{ post_number }} · Essays &amp; observations</span><span aria-hidden="true">↗</span></span>
+        <div class="book-topline">
+            <span>{{ include.post.category | replace: '-', ' ' }}</span>
+            <span><time datetime="{{ include.post.date | date: '%Y-%m-%d' }}">{{ include.post.date | date: '%d %b %Y' }}</time> · PLATE {% if post_number < 10 %}0{% endif %}{{ post_number }}</span>
+        </div>
+        <div class="cover-art-frame optical-well">
+            <img class="cover-art" src="{{ '/assets/' | append: cover | append: '.svg' | relative_url }}" width="800" height="320" alt="" loading="lazy">
+        </div>
+        <div class="cover-body">
+            <h3>{{ include.post.title }}</h3>
+            {% if include.post.description %}<p class="cover-deck">{{ include.post.description }}</p>{% endif %}
+        </div>
+        <span class="cover-bottom">
+            <span>ADITYA SARANGI · READ ESSAY</span>
+            <span class="pad-arrow" aria-hidden="true">↗</span>
+        </span>
     </a>
-    <div class="book-caption"><time datetime="{{ include.post.date | date: '%Y-%m-%d' }}">{{ include.post.date | date: '%d %b %Y' }}</time>{% if include.post.description %}<p>{{ include.post.description }}</p>{% endif %}</div>
 </article>

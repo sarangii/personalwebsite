@@ -2,10 +2,10 @@
 layout: default
 ---
 <section class="category-cover category-{{ page.category }}" aria-labelledby="category-title">
-    <div><p class="eyebrow">{{ page.chapter }} / The collected notes</p><h1 id="category-title">{{ page.title }}</h1><div class="page-description">{{ content }}</div><a class="text-link" href="{{ '/' | relative_url }}#writing">← Back to the reading room</a></div>
-    <span class="category-symbol interest-symbol {{ page.symbol }}" aria-hidden="true"></span>
+    <div class="category-copy"><p class="eyebrow">Chapter {{ page.chapter }} // Collected notes</p><h1 id="category-title">{{ page.title }}</h1><div class="page-description">{{ content }}</div><a class="pad-link" href="{{ '/' | relative_url }}#writing">← Back to the reading room</a></div>
+    {% if page.symbol %}<div class="category-symbol-bay" aria-hidden="true">{% include subsystem-glyph.html symbol=page.symbol %}</div>{% endif %}
 </section>
 <section class="category-list" aria-label="{{ page.title }} entries">
     <div class="section-heading"><div><span class="eyebrow">Index / {{ page.category | replace: '-', ' ' }}</span><h2>On the shelf</h2></div>{% assign entries = site.categories[page.category] %}<span class="section-note">{{ entries | size }} {% if entries.size == 1 %}entry{% else %}entries{% endif %}</span></div>
-    <div class="writing-grid">{% for post in entries %}{% include book-card.html post=post %}{% else %}<div class="empty-state"><span class="empty-mark" aria-hidden="true">⌖</span><h3>A little room for what’s next.</h3><p>Nothing shelved here yet — this plate is still being drafted. In the meantime, explore active essays in Rabbit holes or visit the Transformer studio.</p><div class="empty-actions"><a class="text-link" href="{{ '/rabbit-holes.html' | relative_url }}">Read Rabbit holes <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ '/transformer/' | relative_url }}">Open Transformer studio <span aria-hidden="true">↗</span></a></div></div>{% endfor %}</div>
+    <div class="writing-grid">{% for post in entries %}{% include book-card.html post=post %}{% else %}<div class="empty-state"><span class="empty-status">BANK STATUS // RESERVED · 00 ENTRIES</span><span class="empty-mark" aria-hidden="true">⌖</span><h3>A little room for what’s next.</h3><p>Nothing shelved here yet — this plate is still being drafted. In the meantime, explore active essays in Rabbit holes or visit the Transformer studio.</p><div class="empty-actions"><a class="pad-link" href="{{ '/rabbit-holes.html' | relative_url }}">Read Rabbit holes <span aria-hidden="true">↗</span></a><a class="pad-link" href="{{ '/transformer/' | relative_url }}">Open Transformer studio <span aria-hidden="true">↗</span></a></div></div>{% endfor %}</div>
 </section>

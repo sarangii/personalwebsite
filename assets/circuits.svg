@@ -1,46 +1,242 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
-  <defs>
-    <pattern id="circuit-hatch" width="7" height="7" patternTransform="rotate(-45)" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="0" x2="0" y2="7" stroke="#eae4db" stroke-width="1" stroke-opacity="0.32"/>
-    </pattern>
-  </defs>
-  <!-- Background drafting guide -->
-  <g stroke="#eae4db" stroke-opacity="0.18" stroke-width="0.9" fill="none">
-    <line x1="0" y1="175" x2="800" y2="175" stroke-dasharray="5 5"/>
-    <line x1="400" y1="0" x2="400" y2="350" stroke-dasharray="5 5"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320">
+  <!-- Optical Dark-Field Substrate -->
+  <rect x="0" y="0" width="800" height="320" fill="#0E1117"/>
+
+  <!-- 40px Reticle Underlay Grid -->
+  <g stroke="#1F2733" stroke-width="1">
+    <line x1="40" y1="0" x2="40" y2="272"/>
+    <line x1="80" y1="0" x2="80" y2="272"/>
+    <line x1="120" y1="0" x2="120" y2="272"/>
+    <line x1="160" y1="0" x2="160" y2="272"/>
+    <line x1="200" y1="0" x2="200" y2="272"/>
+    <line x1="240" y1="0" x2="240" y2="272"/>
+    <line x1="280" y1="0" x2="280" y2="272"/>
+    <line x1="320" y1="0" x2="320" y2="272"/>
+    <line x1="360" y1="0" x2="360" y2="272"/>
+    <line x1="400" y1="0" x2="400" y2="272"/>
+    <line x1="440" y1="0" x2="440" y2="272"/>
+    <line x1="480" y1="0" x2="480" y2="272"/>
+    <line x1="520" y1="0" x2="520" y2="272"/>
+    <line x1="560" y1="0" x2="560" y2="272"/>
+    <line x1="600" y1="0" x2="600" y2="272"/>
+    <line x1="640" y1="0" x2="640" y2="272"/>
+    <line x1="680" y1="0" x2="680" y2="272"/>
+    <line x1="720" y1="0" x2="720" y2="272"/>
+    <line x1="760" y1="0" x2="760" y2="272"/>
+    <line x1="0" y1="40" x2="800" y2="40"/>
+    <line x1="0" y1="80" x2="800" y2="80"/>
+    <line x1="0" y1="120" x2="800" y2="120"/>
+    <line x1="0" y1="160" x2="800" y2="160"/>
+    <line x1="0" y1="200" x2="800" y2="200"/>
+    <line x1="0" y1="240" x2="800" y2="240"/>
+    <line x1="0" y1="272" x2="800" y2="272"/>
   </g>
-  <!-- Bus & Orthogonal Traces -->
-  <g fill="none" stroke="#eae4db" stroke-width="1.6">
-    <path d="M60 350V195h160V60h360v215h140v75"/>
-    <path d="M0 95h220m360 0h220M220 195v110h360V60"/>
-    <path d="M90 250h130m360 0h130M150 95v155m500-155v155" stroke-opacity="0.6" stroke-width="1.1"/>
+
+  <!-- Corner Alignment Fiducials -->
+  <g fill="none" stroke="#2C3646" stroke-width="1">
+    <path d="M16 24V16H24M776 16H784V24M16 250V258H24M776 258H784V250"/>
   </g>
-  <!-- Parallel Compute Die Array -->
-  <g transform="translate(260 95)" stroke="#eae4db" stroke-width="1.2">
-    <rect x="0" y="0" width="280" height="160" fill="#243159" fill-opacity="0.45"/>
-    <!-- Left core cluster -->
-    <rect x="14" y="14" width="72" height="60" fill="url(#circuit-hatch)"/>
-    <rect x="14" y="86" width="72" height="60" fill="#eae4db" fill-opacity="0.16"/>
-    <!-- Right core cluster -->
-    <rect x="194" y="14" width="72" height="60" fill="#eae4db" fill-opacity="0.16"/>
-    <rect x="194" y="86" width="72" height="60" fill="url(#circuit-hatch)"/>
-    <!-- Central circular reticle / warp scheduler -->
-    <circle cx="140" cy="80" r="44" fill="#243159" fill-opacity="0.7" stroke="#eae4db" stroke-width="1.5"/>
-    <circle cx="140" cy="80" r="28" fill="none" stroke="#eae4db" stroke-width="1" stroke-dasharray="3 3"/>
-    <path d="M140 36 A44 44 0 0 1 184 80 L140 80 Z" fill="#eae4db" fill-opacity="0.82"/>
-    <path d="M140 124 A44 44 0 0 1 96 80 L140 80 Z" fill="url(#circuit-hatch)"/>
-    <!-- Micro-grid lines inside clusters -->
-    <g stroke="#eae4db" stroke-opacity="0.5" stroke-width="0.9">
-      <line x1="38" y1="14" x2="38" y2="146"/><line x1="62" y1="14" x2="62" y2="146"/>
-      <line x1="218" y1="14" x2="218" y2="146"/><line x1="242" y1="14" x2="242" y2="146"/>
-    </g>
+
+  <!-- Left Parallel Tensor Cluster (x: 56..256, y: 52..244) -->
+  <rect x="56" y="52" width="200" height="192" fill="#131820" stroke="#414E63" stroke-width="1"/>
+  <!-- Internal Bus Divider Rules -->
+  <g stroke="#2C3646" stroke-width="1">
+    <line x1="108" y1="56" x2="108" y2="240"/>
+    <line x1="156" y1="56" x2="156" y2="240"/>
+    <line x1="204" y1="56" x2="204" y2="240"/>
+    <line x1="60" y1="102" x2="252" y2="102"/>
+    <line x1="60" y1="148" x2="252" y2="148"/>
+    <line x1="60" y1="194" x2="252" y2="194"/>
   </g>
-  <!-- Via Nodes -->
-  <g fill="#eae4db">
-    <circle cx="220" cy="95" r="5"/><circle cx="580" cy="95" r="5"/>
-    <circle cx="220" cy="275" r="5"/><circle cx="580" cy="275" r="5"/>
-    <circle cx="150" cy="95" r="3.5"/><circle cx="650" cy="95" r="3.5"/>
-    <circle cx="150" cy="250" r="3.5"/><circle cx="650" cy="250" r="3.5"/>
+  <!-- Left 4x4 Bitcell Matrix (40x38 tiles, 8px channels) -->
+  <g stroke-width="1">
+    <!-- Row 0 (y=60) -->
+    <rect x="64" y="60" width="40" height="38" fill="#E29D48" fill-opacity="0.18" stroke="#E29D48" stroke-opacity="0.65"/>
+    <rect x="112" y="60" width="40" height="38" fill="#E29D48" fill-opacity="0.34" stroke="#E29D48" stroke-opacity="0.75"/>
+    <rect x="160" y="60" width="40" height="38" fill="#ECEFF4" fill-opacity="0.16" stroke="#ECEFF4" stroke-opacity="0.78"/>
+    <rect x="208" y="60" width="40" height="38" fill="#E29D48" fill-opacity="0.62" stroke="#E29D48" stroke-opacity="0.9"/>
+    <!-- Row 1 (y=106) -->
+    <rect x="64" y="106" width="40" height="38" fill="#E29D48" fill-opacity="0.30" stroke="#E29D48" stroke-opacity="0.72"/>
+    <rect x="112" y="106" width="40" height="38" fill="#E29D48" fill-opacity="0.52" stroke="#E29D48" stroke-opacity="0.85"/>
+    <rect x="160" y="106" width="40" height="38" fill="#E29D48" fill-opacity="0.78" stroke="#E29D48" stroke-opacity="0.95"/>
+    <rect x="208" y="106" width="40" height="38" fill="#ECEFF4" fill-opacity="0.22" stroke="#ECEFF4" stroke-opacity="0.88"/>
+    <!-- Row 2 (y=152) -->
+    <rect x="64" y="152" width="40" height="38" fill="#ECEFF4" fill-opacity="0.18" stroke="#ECEFF4" stroke-opacity="0.78"/>
+    <rect x="112" y="152" width="40" height="38" fill="#E29D48" fill-opacity="0.44" stroke="#E29D48" stroke-opacity="0.82"/>
+    <rect x="160" y="152" width="40" height="38" fill="#E29D48" fill-opacity="0.66" stroke="#E29D48" stroke-opacity="0.92"/>
+    <rect x="208" y="152" width="40" height="38" fill="#E29D48" fill-opacity="0.78" stroke="#E29D48" stroke-opacity="0.98"/>
+    <!-- Row 3 (y=198) -->
+    <rect x="64" y="198" width="40" height="38" fill="#E29D48" fill-opacity="0.22" stroke="#E29D48" stroke-opacity="0.68"/>
+    <rect x="112" y="198" width="40" height="38" fill="#E29D48" fill-opacity="0.38" stroke="#E29D48" stroke-opacity="0.78"/>
+    <rect x="160" y="198" width="40" height="38" fill="#E29D48" fill-opacity="0.54" stroke="#E29D48" stroke-opacity="0.86"/>
+    <rect x="208" y="198" width="40" height="38" fill="#ECEFF4" fill-opacity="0.20" stroke="#ECEFF4" stroke-opacity="0.85"/>
   </g>
-  <text x="400" y="330" text-anchor="middle" fill="#eae4db" font-family="Georgia, serif" font-style="italic" font-size="13" opacity="0.88">Fig. A — Compute Die &amp; Bus Lattice</text>
+  <!-- Left Sub-Cell Metal Pitch Lines & Platinum Accent Bars -->
+  <g stroke="#0E1117" stroke-opacity="0.45" stroke-width="1">
+    <line x1="77" y1="61" x2="77" y2="97"/><line x1="91" y1="61" x2="91" y2="97"/>
+    <line x1="125" y1="61" x2="125" y2="97"/><line x1="139" y1="61" x2="139" y2="97"/>
+    <line x1="173" y1="61" x2="173" y2="97"/><line x1="187" y1="61" x2="187" y2="97"/>
+    <line x1="221" y1="61" x2="221" y2="97"/><line x1="235" y1="61" x2="235" y2="97"/>
+    <line x1="77" y1="107" x2="77" y2="143"/><line x1="91" y1="107" x2="91" y2="143"/>
+    <line x1="125" y1="107" x2="125" y2="143"/><line x1="139" y1="107" x2="139" y2="143"/>
+    <line x1="173" y1="107" x2="173" y2="143"/><line x1="187" y1="107" x2="187" y2="143"/>
+    <line x1="221" y1="107" x2="221" y2="143"/><line x1="235" y1="107" x2="235" y2="143"/>
+    <line x1="77" y1="153" x2="77" y2="189"/><line x1="91" y1="153" x2="91" y2="189"/>
+    <line x1="125" y1="153" x2="125" y2="189"/><line x1="139" y1="153" x2="139" y2="189"/>
+    <line x1="173" y1="153" x2="173" y2="189"/><line x1="187" y1="153" x2="187" y2="189"/>
+    <line x1="221" y1="153" x2="221" y2="189"/><line x1="235" y1="153" x2="235" y2="189"/>
+    <line x1="77" y1="199" x2="77" y2="235"/><line x1="91" y1="199" x2="91" y2="235"/>
+    <line x1="125" y1="199" x2="125" y2="235"/><line x1="139" y1="199" x2="139" y2="235"/>
+    <line x1="173" y1="199" x2="173" y2="235"/><line x1="187" y1="199" x2="187" y2="235"/>
+    <line x1="221" y1="199" x2="221" y2="235"/><line x1="235" y1="199" x2="235" y2="235"/>
+  </g>
+  <g fill="#ECEFF4" fill-opacity="0.72">
+    <rect x="166" y="73" width="28" height="2"/><rect x="166" y="83" width="28" height="2"/>
+    <rect x="214" y="119" width="28" height="2"/><rect x="214" y="129" width="28" height="2"/>
+    <rect x="70" y="165" width="28" height="2"/><rect x="70" y="175" width="28" height="2"/>
+    <rect x="214" y="211" width="28" height="2"/><rect x="214" y="221" width="28" height="2"/>
+  </g>
+
+  <!-- Right Parallel Tensor Cluster (x: 544..744, y: 52..244) -->
+  <rect x="544" y="52" width="200" height="192" fill="#131820" stroke="#414E63" stroke-width="1"/>
+  <g stroke="#2C3646" stroke-width="1">
+    <line x1="596" y1="56" x2="596" y2="240"/>
+    <line x1="644" y1="56" x2="644" y2="240"/>
+    <line x1="692" y1="56" x2="692" y2="240"/>
+    <line x1="548" y1="102" x2="740" y2="102"/>
+    <line x1="548" y1="148" x2="740" y2="148"/>
+    <line x1="548" y1="194" x2="740" y2="194"/>
+  </g>
+  <!-- Right 4x4 Bitcell Matrix (Mirrored Density) -->
+  <g stroke-width="1">
+    <!-- Row 0 (y=60) -->
+    <rect x="552" y="60" width="40" height="38" fill="#E29D48" fill-opacity="0.62" stroke="#E29D48" stroke-opacity="0.9"/>
+    <rect x="600" y="60" width="40" height="38" fill="#ECEFF4" fill-opacity="0.16" stroke="#ECEFF4" stroke-opacity="0.78"/>
+    <rect x="648" y="60" width="40" height="38" fill="#E29D48" fill-opacity="0.34" stroke="#E29D48" stroke-opacity="0.75"/>
+    <rect x="696" y="60" width="40" height="38" fill="#E29D48" fill-opacity="0.18" stroke="#E29D48" stroke-opacity="0.65"/>
+    <!-- Row 1 (y=106) -->
+    <rect x="552" y="106" width="40" height="38" fill="#ECEFF4" fill-opacity="0.22" stroke="#ECEFF4" stroke-opacity="0.88"/>
+    <rect x="600" y="106" width="40" height="38" fill="#E29D48" fill-opacity="0.78" stroke="#E29D48" stroke-opacity="0.95"/>
+    <rect x="648" y="106" width="40" height="38" fill="#E29D48" fill-opacity="0.52" stroke="#E29D48" stroke-opacity="0.85"/>
+    <rect x="696" y="106" width="40" height="38" fill="#E29D48" fill-opacity="0.30" stroke="#E29D48" stroke-opacity="0.72"/>
+    <!-- Row 2 (y=152) -->
+    <rect x="552" y="152" width="40" height="38" fill="#E29D48" fill-opacity="0.78" stroke="#E29D48" stroke-opacity="0.98"/>
+    <rect x="600" y="152" width="40" height="38" fill="#E29D48" fill-opacity="0.66" stroke="#E29D48" stroke-opacity="0.92"/>
+    <rect x="648" y="152" width="40" height="38" fill="#E29D48" fill-opacity="0.44" stroke="#E29D48" stroke-opacity="0.82"/>
+    <rect x="696" y="152" width="40" height="38" fill="#ECEFF4" fill-opacity="0.18" stroke="#ECEFF4" stroke-opacity="0.78"/>
+    <!-- Row 3 (y=198) -->
+    <rect x="552" y="198" width="40" height="38" fill="#ECEFF4" fill-opacity="0.20" stroke="#ECEFF4" stroke-opacity="0.85"/>
+    <rect x="600" y="198" width="40" height="38" fill="#E29D48" fill-opacity="0.54" stroke="#E29D48" stroke-opacity="0.86"/>
+    <rect x="648" y="198" width="40" height="38" fill="#E29D48" fill-opacity="0.38" stroke="#E29D48" stroke-opacity="0.78"/>
+    <rect x="696" y="198" width="40" height="38" fill="#E29D48" fill-opacity="0.22" stroke="#E29D48" stroke-opacity="0.68"/>
+  </g>
+  <g stroke="#0E1117" stroke-opacity="0.45" stroke-width="1">
+    <line x1="565" y1="61" x2="565" y2="97"/><line x1="579" y1="61" x2="579" y2="97"/>
+    <line x1="613" y1="61" x2="613" y2="97"/><line x1="627" y1="61" x2="627" y2="97"/>
+    <line x1="661" y1="61" x2="661" y2="97"/><line x1="675" y1="61" x2="675" y2="97"/>
+    <line x1="709" y1="61" x2="709" y2="97"/><line x1="723" y1="61" x2="723" y2="97"/>
+    <line x1="565" y1="107" x2="565" y2="143"/><line x1="579" y1="107" x2="579" y2="143"/>
+    <line x1="613" y1="107" x2="613" y2="143"/><line x1="627" y1="107" x2="627" y2="143"/>
+    <line x1="661" y1="107" x2="661" y2="143"/><line x1="675" y1="107" x2="675" y2="143"/>
+    <line x1="709" y1="107" x2="709" y2="143"/><line x1="723" y1="107" x2="723" y2="143"/>
+    <line x1="565" y1="153" x2="565" y2="189"/><line x1="579" y1="153" x2="579" y2="189"/>
+    <line x1="613" y1="153" x2="613" y2="189"/><line x1="627" y1="153" x2="627" y2="189"/>
+    <line x1="661" y1="153" x2="661" y2="189"/><line x1="675" y1="153" x2="675" y2="189"/>
+    <line x1="709" y1="153" x2="709" y2="189"/><line x1="723" y1="153" x2="723" y2="189"/>
+    <line x1="565" y1="199" x2="565" y2="235"/><line x1="579" y1="199" x2="579" y2="235"/>
+    <line x1="613" y1="199" x2="613" y2="235"/><line x1="627" y1="199" x2="627" y2="235"/>
+    <line x1="661" y1="199" x2="661" y2="235"/><line x1="675" y1="199" x2="675" y2="235"/>
+    <line x1="709" y1="199" x2="709" y2="235"/><line x1="723" y1="199" x2="723" y2="235"/>
+  </g>
+  <g fill="#ECEFF4" fill-opacity="0.72">
+    <rect x="606" y="73" width="28" height="2"/><rect x="606" y="83" width="28" height="2"/>
+    <rect x="558" y="119" width="28" height="2"/><rect x="558" y="129" width="28" height="2"/>
+    <rect x="702" y="165" width="28" height="2"/><rect x="702" y="175" width="28" height="2"/>
+    <rect x="558" y="211" width="28" height="2"/><rect x="558" y="221" width="28" height="2"/>
+  </g>
+
+  <!-- Central Single-Point Bottleneck Core (x: 344..456, y: 76..220) -->
+  <rect x="344" y="76" width="112" height="144" fill="#131820" stroke="#414E63" stroke-width="1.2"/>
+
+  <!-- Starved / Dimmed Peripheral Capacity Inside Central Core -->
+  <g fill="#0E1117" fill-opacity="0.85" stroke="#2C3646" stroke-width="1">
+    <rect x="352" y="104" width="38" height="34"/>
+    <rect x="410" y="104" width="38" height="34"/>
+    <rect x="352" y="158" width="38" height="34"/>
+    <rect x="410" y="158" width="38" height="34"/>
+  </g>
+  <g stroke="#1F2733" stroke-width="1">
+    <line x1="364" y1="104" x2="364" y2="138"/><line x1="378" y1="104" x2="378" y2="138"/>
+    <line x1="422" y1="104" x2="422" y2="138"/><line x1="436" y1="104" x2="436" y2="138"/>
+    <line x1="364" y1="158" x2="364" y2="192"/><line x1="378" y1="158" x2="378" y2="192"/>
+    <line x1="422" y1="158" x2="422" y2="192"/><line x1="436" y1="158" x2="436" y2="192"/>
+    <line x1="352" y1="121" x2="390" y2="121"/><line x1="410" y1="121" x2="448" y2="121"/>
+    <line x1="352" y1="175" x2="390" y2="175"/><line x1="410" y1="175" x2="448" y2="175"/>
+  </g>
+
+  <!-- Orthogonal Inter-Block M3/M4 Bus Channels (y: 96, 148, 200) -->
+  <g fill="none" stroke="#E29D48" stroke-width="1.5">
+    <!-- Left Bank Row Taps & Vertical Collector -->
+    <path d="M256 79H276V217H256"/>
+    <path d="M256 125H276M256 171H276"/>
+    <!-- Right Bank Row Taps & Vertical Collector -->
+    <path d="M544 79H524V217H544"/>
+    <path d="M544 125H524M544 171H524"/>
+    <!-- Horizontal M3/M4 Bus Channels Converging Inward -->
+    <path d="M276 96H400M400 96H524"/>
+    <path d="M276 200H400M400 200H524"/>
+  </g>
+  <!-- Primary Center M4 Bus & Constrained Vertical Control Spine -->
+  <g fill="none" stroke="#E29D48" stroke-width="2">
+    <path d="M276 148H524"/>
+    <path d="M400 60V236"/>
+  </g>
+  <!-- Fault / Serialization Spine Highlight Inside Choked Core -->
+  <line x1="400" y1="96" x2="400" y2="200" stroke="#D96B6B" stroke-width="1"/>
+  <!-- Companion Platinum Timing / Clock Rails -->
+  <g fill="none" stroke="#ECEFF4" stroke-opacity="0.48" stroke-width="1">
+    <path d="M292 90H344M456 90H508"/>
+    <path d="M292 206H344M456 206H508"/>
+    <path d="M292 142H380M420 142H508"/>
+  </g>
+
+  <!-- Central Choke Reticle Crosshair & Bottleneck Framing (#D96B6B Crimson) -->
+  <rect x="384" y="132" width="32" height="32" fill="#0E1117" fill-opacity="0.92" stroke="#D96B6B" stroke-opacity="0.45" stroke-width="1"/>
+  <g fill="none" stroke="#D96B6B" stroke-width="1.5">
+    <!-- Corner Reticle Brackets -->
+    <path d="M384 140V132H392M408 132H416V140M384 156V164H392M408 164H416V156"/>
+    <!-- Crosshair Arms -->
+    <path d="M372 148H393M407 148H428M400 120V141M400 155V176"/>
+  </g>
+  <!-- Central 6x6 Solid Copper/Crimson Choke Via -->
+  <rect x="397" y="145" width="6" height="6" fill="#D96B6B"/>
+  <rect x="399" y="147" width="2" height="2" fill="#E29D48"/>
+
+  <!-- Serialization Spine Choke Vias at Upper/Lower Merges -->
+  <rect x="398" y="94" width="4" height="4" fill="#D96B6B"/>
+  <rect x="398" y="198" width="4" height="4" fill="#D96B6B"/>
+
+  <!-- Perimeter & Bus Junction Via Nodes (4x4 square contact pads) -->
+  <g fill="#E29D48">
+    <rect x="274" y="77" width="4" height="4"/><rect x="274" y="123" width="4" height="4"/>
+    <rect x="274" y="169" width="4" height="4"/><rect x="274" y="215" width="4" height="4"/>
+    <rect x="522" y="77" width="4" height="4"/><rect x="522" y="123" width="4" height="4"/>
+    <rect x="522" y="169" width="4" height="4"/><rect x="522" y="215" width="4" height="4"/>
+    <rect x="274" y="94" width="4" height="4"/><rect x="274" y="146" width="4" height="4"/><rect x="274" y="198" width="4" height="4"/>
+    <rect x="522" y="94" width="4" height="4"/><rect x="522" y="146" width="4" height="4"/><rect x="522" y="198" width="4" height="4"/>
+    <rect x="398" y="58" width="4" height="4"/><rect x="398" y="234" width="4" height="4"/>
+  </g>
+  <g fill="#ECEFF4">
+    <rect x="342" y="94" width="4" height="4"/><rect x="342" y="146" width="4" height="4"/><rect x="342" y="198" width="4" height="4"/>
+    <rect x="454" y="94" width="4" height="4"/><rect x="454" y="146" width="4" height="4"/><rect x="454" y="198" width="4" height="4"/>
+    <rect x="308" y="94" width="4" height="4"/><rect x="308" y="146" width="4" height="4"/><rect x="308" y="198" width="4" height="4"/>
+    <rect x="488" y="94" width="4" height="4"/><rect x="488" y="146" width="4" height="4"/><rect x="488" y="198" width="4" height="4"/>
+    <rect x="54" y="50" width="4" height="4"/><rect x="254" y="50" width="4" height="4"/>
+    <rect x="54" y="242" width="4" height="4"/><rect x="254" y="242" width="4" height="4"/>
+    <rect x="542" y="50" width="4" height="4"/><rect x="742" y="50" width="4" height="4"/>
+    <rect x="542" y="242" width="4" height="4"/><rect x="742" y="242" width="4" height="4"/>
+  </g>
+
+  <!-- Etched Monospace Figure Caption -->
+  <text x="400" y="294" text-anchor="middle" fill="#8B95A5" font-family="'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace" font-size="11" letter-spacing="1.6">FIG. A // PARALLEL ARRAY VS. SINGLE-POINT CONTROL</text>
 </svg>
