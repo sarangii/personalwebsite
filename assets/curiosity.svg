@@ -1,1 +1,101 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320"><path fill="#d5dfd7" d="M0 0h1000v320H0z"/><path fill="#23609b" d="M0 0h360v320H0z"/><path fill="#467249" d="M360 0h280v320H360z"/><path fill="#d9a59a" d="M640 0h360v320H640z"/><circle cx="650" cy="160" r="126" fill="#c4442c"/><g fill="none" stroke="#20231f" stroke-width="3"><circle cx="145" cy="160" r="126"/><circle cx="313" cy="160" r="126"/><circle cx="481" cy="160" r="126"/><circle cx="649" cy="160" r="126"/><circle cx="817" cy="160" r="126"/><circle cx="985" cy="160" r="126"/><path d="M0 160h1000"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 320">
+  <defs>
+    <pattern id="hatch" width="6" height="6" patternTransform="rotate(45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="6" stroke="#eae4db" stroke-width="1" stroke-opacity="0.35"/>
+    </pattern>
+  </defs>
+  <!-- Blueprint coordinate lines & dimension ticks -->
+  <g stroke="#eae4db" stroke-opacity="0.22" stroke-width="0.9" fill="none">
+    <line x1="0" y1="160" x2="1000" y2="160" stroke-dasharray="6 4"/>
+    <line x1="500" y1="0" x2="500" y2="320" stroke-dasharray="6 4"/>
+    <line x1="175" y1="12" x2="175" y2="308" stroke-dasharray="3 5"/>
+    <line x1="825" y1="12" x2="825" y2="308" stroke-dasharray="3 5"/>
+  </g>
+
+  <!-- LEFT: Plan-view laminar geodesic rosette (Fig. 1) -->
+  <g transform="translate(175 154)">
+    <circle r="112" fill="url(#hatch)" stroke="#eae4db" stroke-width="1.4"/>
+    <circle r="86" fill="none" stroke="#eae4db" stroke-width="1" stroke-opacity="0.75"/>
+    <circle r="52" fill="none" stroke="#eae4db" stroke-width="1" stroke-opacity="0.75"/>
+    <!-- Faceted alternating ivory & shadow wedges -->
+    <polygon points="0,-112 29,-45 0,0" fill="#eae4db" fill-opacity="0.88"/>
+    <polygon points="97,-56 50,-16 0,0" fill="#243159" fill-opacity="0.55"/>
+    <polygon points="97,56 29,45 0,0" fill="#eae4db" fill-opacity="0.82"/>
+    <polygon points="0,112 -29,45 0,0" fill="#243159" fill-opacity="0.55"/>
+    <polygon points="-97,56 -50,16 0,0" fill="#eae4db" fill-opacity="0.88"/>
+    <polygon points="-97,-56 -29,-45 0,0" fill="#243159" fill-opacity="0.55"/>
+    <!-- Geodesic triangulated struts -->
+    <g stroke="#eae4db" stroke-width="1.2" fill="none">
+      <polygon points="0,-112 97,-56 97,56 0,112 -97,56 -97,-56"/>
+      <polygon points="56,-97 112,0 56,97 -56,97 -112,0 -56,-97"/>
+      <line x1="0" y1="-112" x2="0" y2="112"/>
+      <line x1="-97" y1="-56" x2="97" y2="56"/>
+      <line x1="-97" y1="56" x2="97" y2="-56"/>
+      <line x1="56" y1="-97" x2="-56" y2="97"/>
+      <line x1="-56" y1="-97" x2="56" y2="97"/>
+      <line x1="-112" y1="0" x2="112" y2="0"/>
+      <polygon points="0,-52 45,-26 45,26 0,52 -45,26 -45,-26"/>
+    </g>
+    <g fill="#eae4db">
+      <circle cx="0" cy="0" r="3"/>
+      <circle cx="0" cy="-112" r="2.5"/><circle cx="97" cy="-56" r="2.5"/><circle cx="97" cy="56" r="2.5"/>
+      <circle cx="0" cy="112" r="2.5"/><circle cx="-97" cy="56" r="2.5"/><circle cx="-97" cy="-56" r="2.5"/>
+    </g>
+    <text x="0" y="138" text-anchor="middle" fill="#eae4db" font-family="Georgia, serif" font-style="italic" font-size="13" opacity="0.9">Fig. 1</text>
+  </g>
+
+  <!-- CENTER: Laminar Geodesic Dome Elevation & Section (Fig. 2) -->
+  <g transform="translate(500 228)">
+    <!-- Baseline & section ticks -->
+    <line x1="-195" y1="0" x2="195" y2="0" stroke="#eae4db" stroke-width="1.6"/>
+    <path d="M-205 -12h14v12M205 -12h-14v12" stroke="#eae4db" stroke-width="1.3" fill="none"/>
+    <!-- Dome outer arc -->
+    <path d="M-175 0 A175 162 0 0 1 175 0 Z" fill="#243159" fill-opacity="0.35" stroke="#eae4db" stroke-width="1.6"/>
+    <!-- Faceted geodesic panels -->
+    <polygon points="-175,0 -142,-92 -95,-58" fill="#eae4db" fill-opacity="0.82"/>
+    <polygon points="-95,-58 -52,-135 0,-95" fill="#eae4db" fill-opacity="0.24"/>
+    <polygon points="0,-95 52,-135 95,-58" fill="#eae4db" fill-opacity="0.86"/>
+    <polygon points="95,-58 142,-92 175,0" fill="url(#hatch)"/>
+    <polygon points="-52,-135 0,-162 52,-135 0,-95" fill="#eae4db" fill-opacity="0.18"/>
+    <polygon points="-95,-58 0,-95 -48,0" fill="url(#hatch)"/>
+    <polygon points="0,-95 95,-58 48,0" fill="#eae4db" fill-opacity="0.28"/>
+    <!-- Triangulated lattice ribs -->
+    <g stroke="#eae4db" stroke-width="1.25" fill="none">
+      <polyline points="-175,0 -142,-92 -95,-58 -52,-135 0,-162 52,-135 95,-58 142,-92 175,0"/>
+      <polyline points="-175,0 -95,-58 -48,0 0,-95 48,0 95,-58 175,0"/>
+      <polyline points="-142,-92 -52,-135 0,-95 52,-135 142,-92"/>
+      <line x1="-142" y1="-92" x2="-48" y2="0"/>
+      <line x1="142" y1="-92" x2="48" y2="0"/>
+      <line x1="0" y1="-162" x2="0" y2="0"/>
+      <line x1="-165" y1="-48" x2="165" y2="-48" stroke-opacity="0.65"/>
+      <line x1="-122" y1="-108" x2="122" y2="-108" stroke-opacity="0.65"/>
+    </g>
+    <g fill="#eae4db">
+      <circle cx="0" cy="-162" r="3"/><circle cx="-52" cy="-135" r="2.5"/><circle cx="52" cy="-135" r="2.5"/>
+      <circle cx="-95" cy="-58" r="2.5"/><circle cx="95" cy="-58" r="2.5"/><circle cx="0" cy="-95" r="2.5"/>
+    </g>
+    <text x="0" y="34" text-anchor="middle" fill="#eae4db" font-family="Georgia, serif" font-style="italic" font-size="13" opacity="0.9">Fig. 2 — Elevation &amp; Section</text>
+  </g>
+
+  <!-- RIGHT: Exploded Star Module & Spherical Mesh (Fig. 3 & Fig. 4) -->
+  <g transform="translate(825 148)">
+    <!-- Wireframe sphere -->
+    <circle r="92" fill="#243159" fill-opacity="0.3" stroke="#eae4db" stroke-width="1.4"/>
+    <ellipse rx="92" ry="34" fill="none" stroke="#eae4db" stroke-width="1" stroke-opacity="0.7"/>
+    <ellipse rx="92" ry="66" fill="none" stroke="#eae4db" stroke-width="0.9" stroke-opacity="0.5"/>
+    <ellipse rx="36" ry="92" fill="none" stroke="#eae4db" stroke-width="1" stroke-opacity="0.7"/>
+    <ellipse rx="68" ry="92" fill="none" stroke="#eae4db" stroke-width="0.9" stroke-opacity="0.5"/>
+    <!-- Highlighted geodesic star cluster -->
+    <polygon points="0,-46 42,-16 26,34 -26,34 -42,-16" fill="url(#hatch)" stroke="#eae4db" stroke-width="1.2"/>
+    <polygon points="0,-46 16,-8 42,-16" fill="#eae4db" fill-opacity="0.85"/>
+    <polygon points="42,-16 14,10 26,34" fill="#eae4db" fill-opacity="0.85"/>
+    <polygon points="-26,34 -14,10 -42,-16" fill="#eae4db" fill-opacity="0.85"/>
+    <g stroke="#eae4db" stroke-width="1.1" fill="none">
+      <line x1="0" y1="-92" x2="0" y2="92"/>
+      <line x1="-92" y1="0" x2="92" y2="0"/>
+      <polyline points="-78,-48 0,-46 78,-48"/>
+      <polyline points="-78,48 -26,34 26,34 78,48"/>
+    </g>
+    <text x="0" y="128" text-anchor="middle" fill="#eae4db" font-family="Georgia, serif" font-style="italic" font-size="13" opacity="0.9">Fig. 3</text>
+  </g>
+</svg>

@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v=20261127">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%23eeeade%22/><g transform=%22rotate(-90 50 50)%22><text x=%2250%22 y=%2274%22 text-anchor=%22middle%22 font-size=%2272%22 fill=%22%23af3926%22>%E0%AC%86</text></g></svg>">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ '/styles.css' | relative_url }}?v=20261128">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2250%22 fill=%22%233c4d84%22 stroke=%22%23f3ece1%22 stroke-width=%224%22/><g transform=%22rotate(-90 50 50)%22><text x=%2250%22 y=%2274%22 text-anchor=%22middle%22 font-size=%2272%22 fill=%22%23f3ece1%22>%E0%AC%86</text></g></svg>">
 
     {% seo %}
     {% feed_meta %}
@@ -26,34 +26,38 @@
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
-    <header class="site-header">
-        <a href="{{ '/' | relative_url }}" class="site-name" aria-label="Aditya Sarangi — home"><span class="publisher-mark" aria-hidden="true">a<span>s</span></span><span>Aditya Sarangi<small>A personal journal</small></span></a>
-        <div class="navigation-bar">
-            <nav aria-label="Main navigation">
-                <a href="{{ '/' | relative_url }}#writing">Writing</a>
-                <a href="{{ '/rabbit-holes.html' | relative_url }}"{% if page.url == '/rabbit-holes.html' %} aria-current="page"{% endif %}>Rabbit holes</a>
-                <a href="{{ '/music.html' | relative_url }}"{% if page.url == '/music.html' %} aria-current="page"{% endif %}>Music</a>
-                <a href="{{ '/collections.html' | relative_url }}"{% if page.url == '/collections.html' %} aria-current="page"{% endif %}>Collections</a>
-                <a href="{{ '/transformer/' | relative_url }}">Studio</a>
-                <a href="{{ '/' | relative_url }}#about">About</a>
-            </nav>
-            <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-label">Light</span> <span aria-hidden="true">◐</span></button>
+    <div class="plate-frame">
+        <div class="plate-inner">
+            <header class="site-header">
+                <a href="{{ '/' | relative_url }}" class="site-name" aria-label="Aditya Sarangi — home"><span class="publisher-mark" aria-hidden="true">a<span>s</span></span><span>Aditya Sarangi<small>A personal journal</small></span></a>
+                <div class="navigation-bar">
+                    <nav aria-label="Main navigation">
+                        <a href="{{ '/' | relative_url }}#writing">Writing</a>
+                        <a href="{{ '/rabbit-holes.html' | relative_url }}"{% if page.url == '/rabbit-holes.html' %} aria-current="page"{% endif %}>Rabbit holes</a>
+                        <a href="{{ '/music.html' | relative_url }}"{% if page.url == '/music.html' %} aria-current="page"{% endif %}>Music</a>
+                        <a href="{{ '/collections.html' | relative_url }}"{% if page.url == '/collections.html' %} aria-current="page"{% endif %}>Collections</a>
+                        <a href="{{ '/transformer/' | relative_url }}">Studio</a>
+                        <a href="{{ '/' | relative_url }}#about">About</a>
+                    </nav>
+                    <button class="theme-toggle" type="button" aria-pressed="false" aria-label="Switch to dark mode"><span class="theme-toggle-label">Light</span> <span aria-hidden="true">◐</span></button>
+                </div>
+            </header>
+            <main class="content" id="main">
+                {{ content }}
+            </main>
+            <footer class="site-footer">
+                <a class="footer-name" href="{{ '/' | relative_url }}">Aditya Sarangi</a>
+                <p>End of this plate. Beginning of another thought.</p>
+                <nav aria-label="Social links">
+                    <a href="{{ '/feed.xml' | relative_url }}">RSS / Atom</a>
+                    <a href="mailto:aditya.sarangi65@gmail.com">Email ↗</a>
+                    <a href="https://x.com/AdityaSara45596">Twitter ↗</a>
+                    <a href="https://www.linkedin.com/in/sarangii/">LinkedIn ↗</a>
+                </nav>
+                <span class="copyright">© {{ site.time | date: '%Y' }} Aditya Sarangi · Plate 1 / ∞</span>
+            </footer>
         </div>
-    </header>
-    <main class="content" id="main">
-        {{ content }}
-    </main>
-    <footer class="site-footer">
-        <a class="footer-name" href="{{ '/' | relative_url }}">Aditya Sarangi</a>
-        <p>End of this page. Beginning of another thought.</p>
-        <nav aria-label="Social links">
-            <a href="{{ '/feed.xml' | relative_url }}">RSS / Atom</a>
-            <a href="mailto:aditya.sarangi65@gmail.com">Email ↗</a>
-            <a href="https://x.com/AdityaSara45596">Twitter ↗</a>
-            <a href="https://www.linkedin.com/in/sarangii/">LinkedIn ↗</a>
-        </nav>
-        <span class="copyright">© {{ site.time | date: '%Y' }} Aditya Sarangi</span>
-    </footer>
+    </div>
 
     <script>
         (function () {

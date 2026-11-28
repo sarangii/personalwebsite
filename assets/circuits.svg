@@ -1,1 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350"><g fill="none" stroke="#24251f" stroke-width="3"><path d="M90 350V195h155V65h350v210h115v75M0 100h245m350 0h205M245 195v110h350V65"/><path d="M-50 350 400 0M80 350 530 0M210 350 660 0M340 350 790 0" stroke="#efe9d3"/></g><g fill="#255d95"><path d="M245 90a155 155 0 0 0 310 0ZM245 300a155 155 0 0 1 310 0Z"/></g><circle cx="400" cy="195" r="59" fill="#c4472d"/><g fill="#24251f"><circle cx="245" cy="100" r="15"/><circle cx="595" cy="100" r="15"/><circle cx="245" cy="305" r="15"/><circle cx="595" cy="305" r="15"/></g></svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 350">
+  <defs>
+    <pattern id="circuit-hatch" width="7" height="7" patternTransform="rotate(-45)" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="0" y2="7" stroke="#eae4db" stroke-width="1" stroke-opacity="0.32"/>
+    </pattern>
+  </defs>
+  <!-- Background drafting guide -->
+  <g stroke="#eae4db" stroke-opacity="0.18" stroke-width="0.9" fill="none">
+    <line x1="0" y1="175" x2="800" y2="175" stroke-dasharray="5 5"/>
+    <line x1="400" y1="0" x2="400" y2="350" stroke-dasharray="5 5"/>
+  </g>
+  <!-- Bus & Orthogonal Traces -->
+  <g fill="none" stroke="#eae4db" stroke-width="1.6">
+    <path d="M60 350V195h160V60h360v215h140v75"/>
+    <path d="M0 95h220m360 0h220M220 195v110h360V60"/>
+    <path d="M90 250h130m360 0h130M150 95v155m500-155v155" stroke-opacity="0.6" stroke-width="1.1"/>
+  </g>
+  <!-- Parallel Compute Die Array -->
+  <g transform="translate(260 95)" stroke="#eae4db" stroke-width="1.2">
+    <rect x="0" y="0" width="280" height="160" fill="#243159" fill-opacity="0.45"/>
+    <!-- Left core cluster -->
+    <rect x="14" y="14" width="72" height="60" fill="url(#circuit-hatch)"/>
+    <rect x="14" y="86" width="72" height="60" fill="#eae4db" fill-opacity="0.16"/>
+    <!-- Right core cluster -->
+    <rect x="194" y="14" width="72" height="60" fill="#eae4db" fill-opacity="0.16"/>
+    <rect x="194" y="86" width="72" height="60" fill="url(#circuit-hatch)"/>
+    <!-- Central circular reticle / warp scheduler -->
+    <circle cx="140" cy="80" r="44" fill="#243159" fill-opacity="0.7" stroke="#eae4db" stroke-width="1.5"/>
+    <circle cx="140" cy="80" r="28" fill="none" stroke="#eae4db" stroke-width="1" stroke-dasharray="3 3"/>
+    <path d="M140 36 A44 44 0 0 1 184 80 L140 80 Z" fill="#eae4db" fill-opacity="0.82"/>
+    <path d="M140 124 A44 44 0 0 1 96 80 L140 80 Z" fill="url(#circuit-hatch)"/>
+    <!-- Micro-grid lines inside clusters -->
+    <g stroke="#eae4db" stroke-opacity="0.5" stroke-width="0.9">
+      <line x1="38" y1="14" x2="38" y2="146"/><line x1="62" y1="14" x2="62" y2="146"/>
+      <line x1="218" y1="14" x2="218" y2="146"/><line x1="242" y1="14" x2="242" y2="146"/>
+    </g>
+  </g>
+  <!-- Via Nodes -->
+  <g fill="#eae4db">
+    <circle cx="220" cy="95" r="5"/><circle cx="580" cy="95" r="5"/>
+    <circle cx="220" cy="275" r="5"/><circle cx="580" cy="275" r="5"/>
+    <circle cx="150" cy="95" r="3.5"/><circle cx="650" cy="95" r="3.5"/>
+    <circle cx="150" cy="250" r="3.5"/><circle cx="650" cy="250" r="3.5"/>
+  </g>
+  <text x="400" y="330" text-anchor="middle" fill="#eae4db" font-family="Georgia, serif" font-style="italic" font-size="13" opacity="0.88">Fig. A — Compute Die &amp; Bus Lattice</text>
+</svg>
